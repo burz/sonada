@@ -1,4 +1,4 @@
 SiteName: sonada
-ModulesName: modules
+ModulesName: Modules
 
 DefaultConsole: $(function () { debug("lol"); });

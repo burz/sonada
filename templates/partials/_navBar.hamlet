@@ -1,0 +1,4 @@
+<div id="navBar">
+    <h1>
+        <a href=@{HomeR}>_{MsgSiteName}
+    <a href=@{ModulesR}>Modules

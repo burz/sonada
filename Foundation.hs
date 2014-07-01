@@ -61,6 +61,7 @@ instance Yesod App where
         "config/client_session_key.aes"
 
     defaultLayout widget = do
+        let _navBar = $(widgetFile "partials/_navBar")
         master <- getYesod
         mmsg <- getMessage
 
