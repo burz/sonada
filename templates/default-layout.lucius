@@ -1,0 +1,12 @@
+body {
+    background-color: #192525;
+}
+
+a {
+    link { color: inherit; }
+    active { color: inherit; }
+    visited { color: inherit; }
+    hover { color: inherit; }
+    color: #CCCCB2;
+}
+
