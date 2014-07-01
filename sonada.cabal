@@ -20,6 +20,8 @@ library
                      Settings.StaticFiles
                      Settings.Development
                      Handler.Home
+                     Handler.Partials
+                     Handler.Modules
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

@@ -1,5 +1,5 @@
 <div id="console">
-    <div id="editor" style="height: 80%; width: 50%">
+    <div id="editor">
         $maybe code' <- code
             #{code'}
         $nothing
@@ -14,9 +14,9 @@
     <style type="text/css" media="screen">
         #editor {
             position: absolute;
-            top: 15%;
-            left: 15%;
-            width: 50%;
-            height: 80%;
+            top: #{top}%;
+            left: #{left}%;
+            width: #{width}%;
+            height: #{height}%;
         }
 
