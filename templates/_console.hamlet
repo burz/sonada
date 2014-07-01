@@ -1,0 +1,22 @@
+<div id="console">
+    <div id="editor" style="height: 80%; width: 50%">
+        $maybe code' <- code
+            #{code'}
+        $nothing
+            #{deflt}
+
+    <script src="/static/js/ace-min/ace.js" type="text/javascript" charset="utf-8">
+
+    <script>var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/javascript");
+
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 50%;
+            height: 80%;
+        }
+
