@@ -3,13 +3,15 @@
         $maybe code' <- code
             #{code'}
         $nothing
-            #{deflt}
+            _{MsgDefaultConsole}
 
     <script src="/static/js/ace-min/ace.js" type="text/javascript" charset="utf-8">
 
-    <script>var editor = ace.edit("editor");
+    <script>
+        var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
         editor.getSession().setMode("ace/mode/javascript");
+        editor.setShowPrintMargin(false);
 
     <style type="text/css" media="screen">
         #editor {
