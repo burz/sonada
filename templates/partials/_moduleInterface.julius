@@ -1,0 +1,8 @@
+function sendModule() {
+    $("##{messageRender MsgModuleInputId}").text(editor.getValue());
+
+    $("##{messageRender MsgModuleFormId}").submit();
+}
+
+$("##{messageRender MsgModuleSaveId}").click(sendModule)
+

@@ -1,6 +1,8 @@
 <div id="moduleInterface">
     ^{_console}
 
-    <form method=post action=@{ModulesR} enctype=#{enctype}>
+    <form id=_{MsgModuleFormId} method=post action=@{ModulesR} enctype=#{enctype}>
         ^{form}
+
+    <button id=_{MsgModuleSaveId}>Save
 
