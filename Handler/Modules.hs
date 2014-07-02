@@ -10,6 +10,9 @@ getModulesR = do
     let _moduleList = _moduleList' modules
     defaultLayout $(widgetFile "modules")
 
-postModulesR :: Handler Html
-postModulesR = getModulesR
+postModulesR :: Handler ()
+postModulesR = do
+    m <- requireJsonBody :: Handler Module
+    _ <- runDB $ insert m
+    sendResponseStatus status201 ("CREATED" :: Text)
 

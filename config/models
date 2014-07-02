@@ -12,4 +12,3 @@ Module
     code Text
     name Text Maybe
     deriving Show
-

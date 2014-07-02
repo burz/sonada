@@ -5,4 +5,4 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
-/modules ModulesR GET
+/modules ModulesR GET POST

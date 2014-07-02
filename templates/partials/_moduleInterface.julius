@@ -1,24 +1,23 @@
 function sendModule() {
     var data = {
         code: editor.getValue(),
-        title: $("#moduleTitle").text()
+        name: $("#moduleTitle").text()
     };
 
-    $.ajax({
+    var request = $.ajax({
         type: "POST",
         url: "@{ModulesR}",
         contentType:'application/json',
         data: JSON.stringify(data),
-        dataType:'json',
-
-        success: function () {
-            alert("done");
-        },
-        error: function (x, y, err) {
-            alert(err);
-        }
     })
+
+    request.done(function (msg) {
+        alert("Module saved");
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Module save failed: " + textStatus);
+    });
 }
 
 $("#moduleSave").click(sendModule)
-

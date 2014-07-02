@@ -27,3 +27,11 @@ infixr 5 <>
 (<>) :: Monoid m => m -> m -> m
 (<>) = mappend
 #endif
+
+import Network.HTTP.Types as Import
+    ( status200
+    , status201
+    , status400
+    , status403
+    , status404
+    )
