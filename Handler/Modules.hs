@@ -10,3 +10,6 @@ getModulesR = do
     let _moduleList = _moduleList' modules
     defaultLayout $(widgetFile "modules")
 
+postModulesR :: Handler Html
+postModulesR = getModulesR
+

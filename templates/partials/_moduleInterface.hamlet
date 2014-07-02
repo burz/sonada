@@ -1,0 +1,6 @@
+<div id="moduleInterface">
+    ^{_console}
+
+    <form method=post action=@{ModulesR} enctype=#{enctype}>
+        ^{form}
+
