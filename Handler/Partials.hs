@@ -1,4 +1,8 @@
-module Handler.Partials where
+module Handler.Partials
+( _console'
+, _moduleList'
+, _moduleInterface'
+) where
 
 import Model
 

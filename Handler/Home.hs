@@ -1,13 +1,9 @@
 module Handler.Home where
 
 import Handler.Partials
+import Forms.Module
 
 import Import
-
-moduleForm :: Html -> MForm Handler (FormResult Module, Widget)
-moduleForm = renderDivs $ Module
-    <$> areq textField "Code" Nothing
-    <*> aopt textField "Title" Nothing
 
 getHomeR :: Handler Html
 getHomeR = do
