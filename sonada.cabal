@@ -19,8 +19,6 @@ library
                      Settings
                      Settings.StaticFiles
                      Settings.Development
-                     Forms.Base
-                     Forms.Module
                      Handler.Home
                      Handler.Partials
                      Handler.Modules
