@@ -1,11 +1,11 @@
-function sendModule() {
+function sendModule(type) {
     var data = {
         code: editor.getValue(),
         name: $("#moduleTitle").text()
     };
 
     var request = $.ajax({
-        type: "POST",
+        type: type,
         url: "@{ModulesR}",
         contentType:'application/json',
         data: JSON.stringify(data),
@@ -20,4 +20,39 @@ function sendModule() {
     });
 }
 
-$("#moduleSave").click(sendModule)
+var audioContext = new AudioContext();
+var audioNode = audioContext.createScriptProcessor(16384, 0, 4);
+
+function playModule() {
+    var code = editor.getValue();
+
+    eval(code);
+
+    audioNode.onaudioprocess = function(audioProcessingEvent) {
+        var outputBuffer = audioProcessingEvent.outputBuffer;
+
+        for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
+            var outData = outputBuffer.getChannelData(channel);
+
+            for(var sample = 0; sample < outputBuffer.length; sample++) {
+                var sampleTime = audioContext.currentTime +
+                                 outputBuffer.duration *
+                                 sample / outputBuffer.length;
+
+                outData[sample] = gen(sampleTime);
+            }
+        }
+    };
+
+    audioNode.connect(audioContext.destination);
+}
+
+function stopModule() {
+}
+
+$("#moduleSave").click(function () {
+    sendModule("POST");
+});
+
+$("#modulePlay").click(playModule);
+$("#moduleStop").click(stopModule);

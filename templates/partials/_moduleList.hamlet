@@ -1,3 +1,5 @@
 <ul>
     $forall Entity _ module <- modules
-        <li>#{moduleCode module}
+        <li>
+            <code>
+                #{moduleCode module}

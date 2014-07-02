@@ -5,4 +5,5 @@
     ^{_console}
 
     <button id="moduleSave">Save
-
+    <button id="modulePlay">Play
+    <button id="moduleStop">Stop
