@@ -21,7 +21,7 @@ function sendModule(type) {
 }
 
 var audioContext = new AudioContext();
-var audioNode = audioContext.createScriptProcessor(16384, 0, 4);
+var audioNode = audioContext.createScriptProcessor(16384, 0, 1);
 
 function playModule() {
     var code = editor.getValue();
@@ -30,12 +30,13 @@ function playModule() {
 
     audioNode.onaudioprocess = function(audioProcessingEvent) {
         var outputBuffer = audioProcessingEvent.outputBuffer;
+        var currentTime = audioContext.currentTime;
 
         for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {
             var outData = outputBuffer.getChannelData(channel);
 
             for(var sample = 0; sample < outputBuffer.length; sample++) {
-                var sampleTime = audioContext.currentTime +
+                var sampleTime = currentTime +
                                  outputBuffer.duration *
                                  sample / outputBuffer.length;
 
@@ -48,6 +49,7 @@ function playModule() {
 }
 
 function stopModule() {
+    audioNode.disconnect();
 }
 
 $("#moduleSave").click(function () {
@@ -56,9 +58,3 @@ $("#moduleSave").click(function () {
 
 $("#modulePlay").click(playModule);
 $("#moduleStop").click(stopModule);
-
-var editor = ace.edit("editor");
-editor.setTheme("ace/theme/monokai");
-editor.getSession().setMode("ace/mode/javascript");
-editor.setShowPrintMargin(false);
-

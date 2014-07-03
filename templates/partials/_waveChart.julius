@@ -24,6 +24,7 @@ function setupWaveChart(labels, data) {
         pointDot : false,
         datasetStroke : false,
         datasetFill : false,
+        showTooltips: false
     };
 
     chart.Line(chartData, options);
