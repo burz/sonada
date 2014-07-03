@@ -8,7 +8,9 @@ getModulesR :: Handler Html
 getModulesR = do
     modules <- runDB $ selectList [] []
     let _moduleList = _moduleList' modules
-    defaultLayout $(widgetFile "modules")
+    defaultLayout $ do
+        setTitle "Modules"
+        $(widgetFile "modules")
 
 postModulesR :: Handler ()
 postModulesR = do

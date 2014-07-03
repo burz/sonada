@@ -10,6 +10,8 @@ numberOfModulesToLoad = 10
 getWaveR :: Handler Html
 getWaveR = do
     modules <- runDB $ selectList [] [LimitTo numberOfModulesToLoad]
-    let _moduleList = _moduleList' modules
-    defaultLayout $(widgetFile "wave")
+    let _waveChart = _waveChart' modules
+    defaultLayout $ do
+        setTitle "Wave"
+        $(widgetFile "wave")
 

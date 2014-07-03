@@ -1,0 +1,10 @@
+#moduleList {
+   position: absolute;
+   top: 30%;
+   left: 10%;
+}
+#chart {
+   position: absolute;
+   top: 30%;
+   right: 10%;
+}

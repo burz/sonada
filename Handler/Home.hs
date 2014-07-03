@@ -9,7 +9,7 @@ getHomeR = do
     let handlerName = "getHomeR" :: Text
         code = Nothing :: Maybe Text
     defaultLayout $ do
-        let _moduleInterface = _moduleInterface' code
         setTitle "sonada"
+        let _moduleInterface = _moduleInterface' code
         $(widgetFile "homepage")
 

@@ -1,0 +1,33 @@
+function setupWaveChart(labels, data) {
+    var chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: "Waveform",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: data
+            }
+        ]
+    };
+    
+    var options = {
+        scaleShowGridLines : true,
+        scaleGridLineColor : "rgba(1,1,1,.5)",
+        scaleGridLineWidth : 1,
+        bezierCurve : true,
+        bezierCurveTension : 0.4,
+        pointDot : false,
+        datasetStroke : false,
+        datasetFill : false,
+    };
+
+    chart.Line(chartData, options);
+}
+
+setupWaveChart(["January", "February", "March", "April", "May", "June", "July"],
+[65, 59, 80, 81, 56, 55, 40]);

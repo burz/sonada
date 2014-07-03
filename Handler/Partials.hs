@@ -1,7 +1,7 @@
 module Handler.Partials
-( _console'
-, _moduleList'
+( _moduleList'
 , _moduleInterface'
+, _waveChart'
 ) where
 
 import Model
@@ -16,6 +16,17 @@ _moduleList' modules = $(widgetFile "partials/_moduleList")
 
 _moduleInterface' :: Maybe Text -> Widget
 _moduleInterface' code = do
+    addScriptRemote "/static/js/ace-min/ace.js"
     let _console = _console' code
     $(widgetFile "partials/_moduleInterface")
+
+_chart' :: Widget
+_chart' = $(widgetFile "partials/_chart")
+
+_waveChart' :: [Entity Module] -> Widget
+_waveChart' modules = do
+    addScriptRemote "/static/js/Chart.min.js"
+    let _moduleList = _moduleList' modules
+    let _chart = _chart'
+    $(widgetFile "partials/_waveChart")
 

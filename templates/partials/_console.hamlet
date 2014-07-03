@@ -4,5 +4,3 @@
             #{code'}
         $nothing
             _{MsgDefaultConsole}
-
-    <script src="/static/js/ace-min/ace.js" type="text/javascript" charset="utf-8">
