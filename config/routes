@@ -6,3 +6,4 @@
 
 / HomeR GET
 /modules ModulesR GET POST
+/wave WaveR GET

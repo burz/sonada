@@ -4,6 +4,11 @@
 
     ^{_console}
 
-    <button id="moduleSave">Save
-    <button id="modulePlay">Play
-    <button id="moduleStop">Stop
+    <div id="moduleButtons">
+        <button id="moduleSave">Save
+        <button id="modulePlay">Play
+        <button id="moduleStop">Stop
+
+    <div id="moduleNameField">
+        <label for"moduleName">Name:
+        <input type=text id="moduleName">

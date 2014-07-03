@@ -1,7 +1,7 @@
 function sendModule(type) {
     var data = {
         code: editor.getValue(),
-        name: $("#moduleTitle").text()
+        name: $("#moduleName").text()
     };
 
     var request = $.ajax({
@@ -56,3 +56,9 @@ $("#moduleSave").click(function () {
 
 $("#modulePlay").click(playModule);
 $("#moduleStop").click(stopModule);
+
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/monokai");
+editor.getSession().setMode("ace/mode/javascript");
+editor.setShowPrintMargin(false);
+

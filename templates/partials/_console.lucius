@@ -1,0 +1,7 @@
+#editor {
+   position: absolute;
+   top: 15%;
+   left: 10%;
+   width: 80%;
+   height: 60%;
+}

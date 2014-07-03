@@ -1,5 +1,7 @@
-<ul>
+<ul id="moduleList">
     $forall Entity _ module <- modules
-        <li>
+        <li class="moduleListing">
+            $maybe name <- moduleName module
+                #{name}
             <code>
                 #{moduleCode module}
