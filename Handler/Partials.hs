@@ -17,6 +17,7 @@ _moduleList' modules = $(widgetFile "partials/_moduleList")
 _moduleInterface' :: Maybe Text -> Widget
 _moduleInterface' code = do
     addScriptRemote "/static/js/ace-min/ace.js"
+    $(widgetFile "base/tools")
     let _console = _console' code
     $(widgetFile "partials/_moduleInterface")
 

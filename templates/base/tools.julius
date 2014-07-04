@@ -1,0 +1,63 @@
+function BufferTool(files) {
+    loader = new BufferLoader(
+        context,
+        files,
+        this.finished
+    );
+
+    loader.load();
+}
+
+BufferTool.prototype.finished(buffers) {
+    this.buffers = buffers;
+}
+
+function SourceTool(buffer, loop) {
+    this.source = audioContext.createBufferSource();
+
+    this.source.buffer = buffer;
+    this.source.loop = loop;
+}
+
+function GainTool(source, value) {
+    this.node = audioContext.createGain();
+
+    source.connect(this.node);
+
+    this.node.gain.value = value;
+}
+
+GainTool.prototype.setValue = function (value) {
+    this.node.gain.value = value;
+}
+
+function CrossfadeTool(sourceOne, sourceTwo) {
+    this.controlOne = GainTool(sourceOne, 1);
+    this.controlTwo = GainTool(sourceTwo, 0);
+
+    this.sourceOne.connect(this.controlOne);
+    this.sourceTwo.connect(this.controlTwo);
+}
+
+CrossfadeTool.prototype.crossfade = function (value, max) {
+    var v = value / max;
+    var gainOne = Math.cos((1 - v) * 0.5 * Math.PI);
+    var gainTwo = Math.cos(v * 0.5 * Math.PI);
+
+    this.controlOne.setValue(this.gainOne);
+    this.controlTwo.setValue(this.gainTwo);
+}
+
+function FilterTool(source, type, frequency) {
+    this.node = context.createBiquadFilter();
+
+    this.node.type = type;
+    this.node.frequency.value = frequency;
+
+    source.connect(this.node);
+}
+
+FilterTool.prototype.filter = function (type, frequency) {
+    this.node.type = type;
+    this.node.frequency.value = frequency;
+}
