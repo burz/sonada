@@ -1,3 +1,4 @@
-^{_moduleList}
+<div id="waveChart">
+    ^{_chart}
 
-^{_chart}
+    ^{_moduleList}

@@ -1,14 +1,9 @@
-#moduleList {
-    position: absolute;
-    top: 30%;
-    left: 10%;
-}
 #chart {
     position: absolute;
-    top: 30%;
-    right: 10%;
+    top: 25%;
 }
-#chartCanvas {
-    width: 400px;
-    height: 200px;
+#moduleList {
+    position: absolute;
+    left: 10%;
+    top: 95%;
 }

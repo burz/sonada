@@ -1,2 +1,3 @@
 <div id="chart">
-    <canvas id="chartCanvas">
+    <center>
+        <canvas id="chartCanvas" width="950" height="400">

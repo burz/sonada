@@ -18,7 +18,7 @@ function setupWaveChart(labels, data) {
     var options = {
         scaleShowGridLines : true,
         scaleGridLineColor : "rgba(1,1,1,.5)",
-        scaleGridLineWidth : 1,
+        scaleGridLineWidth : 0.25,
         bezierCurve : true,
         bezierCurveTension : 0.4,
         pointDot : false,
@@ -27,8 +27,43 @@ function setupWaveChart(labels, data) {
         showTooltips: false
     };
 
+    console.log(labels);
+    console.log(data);
+
     chart.Line(chartData, options);
 }
 
-setupWaveChart(["January", "February", "March", "April", "May", "June", "July"],
-[65, 59, 80, 81, 56, 55, 40]);
+function getSamples(generator, duration, length, startingAt) {
+    var times = [];
+    var values = [];
+
+    for(var i = 0; i < length; i++) {
+        var t = startingAt + duration * i;
+
+        times.push("");
+        values.push(generator(t));
+    }
+
+    return {
+        times: times,
+        values: values
+    };
+}
+
+function loadDefaultWave() {
+    loadWave($(".moduleListing code").first().text());
+}
+
+function loadWave(code) {
+    eval(code);
+
+    var samples = getSamples(gen, 0.0001, 100, 0);
+
+    setupWaveChart(samples.times, samples.values);
+}
+
+loadDefaultWave();
+
+$(".moduleListing").click(function (evnt) {
+    loadWave(evnt.target.childNodes[0].data);
+});
