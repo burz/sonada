@@ -1,25 +1,74 @@
-function BufferTool(files) {
+function BufferLoader(audioContext, urlList, callback) {
+  this.audioContext = audioContext;
+  this.urlList = urlList;
+  this.onload = callback;
+  this.bufferList = new Array();
+  this.loadCount = 0;
+}
+
+BufferLoader.prototype.loadBuffer = function(url, index) {
+  // Load buffer asynchronously
+  var request = new XMLHttpRequest();
+  request.open("GET", url, true);
+  request.responseType = "arraybuffer";
+
+  var loader = this;
+
+  request.onload = function() {
+    // Asynchronously decode the audio file data in request.response
+    loader.audioContext.decodeAudioData(
+      request.response,
+      function(buffer) {
+        if (!buffer) {
+          alert('error decoding file data: ' + url);
+          return;
+        }
+        loader.bufferList[index] = buffer;
+        if (++loader.loadCount == loader.urlList.length)
+          loader.onload(loader.bufferList);
+      },
+      function(error) {
+        console.error('decodeAudioData error', error);
+      }
+    );
+  }
+
+  request.onerror = function() {
+    alert('BufferLoader: XHR error');
+  }
+
+  request.send();
+}
+
+BufferLoader.prototype.load = function() {
+  for (var i = 0; i < this.urlList.length; ++i)
+  this.loadBuffer(this.urlList[i], i);
+}
+
+function BufferTool(audioContext, files) {
+    var tool = this;
+
     loader = new BufferLoader(
-        context,
+        audioContext,
         files,
-        this.finished
+        function (buffers) {
+            tool.buffers = buffers;
+
+            alert("Loaded buffers");
+        }
     );
 
     loader.load();
 }
 
-BufferTool.prototype.finished(buffers) {
-    this.buffers = buffers;
-}
-
-function SourceTool(buffer, loop) {
+function SourceTool(audioContext, buffer, loop) {
     this.source = audioContext.createBufferSource();
 
     this.source.buffer = buffer;
     this.source.loop = loop;
 }
 
-function GainTool(source, value) {
+function GainTool(audioContext, source, value) {
     this.node = audioContext.createGain();
 
     source.connect(this.node);
@@ -48,8 +97,8 @@ CrossfadeTool.prototype.crossfade = function (value, max) {
     this.controlTwo.setValue(this.gainTwo);
 }
 
-function FilterTool(source, type, frequency) {
-    this.node = context.createBiquadFilter();
+function FilterTool(audioContext, source, type, frequency) {
+    this.node = audioContext.createBiquadFilter();
 
     this.node.type = type;
     this.node.frequency.value = frequency;
