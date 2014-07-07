@@ -1,7 +1,7 @@
 function sendModule(type) {
     var data = {
         code: editor.getValue(),
-        name: $("#moduleName").text()
+        name: $("#moduleName").val()
     };
 
     var request = $.ajax({

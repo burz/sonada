@@ -2,6 +2,6 @@
     $forall Entity _ module <- modules
         <li class="moduleListing">
             $maybe name <- moduleName module
-                #{name}
+                #{name} #
             <code>
                 #{moduleCode module}
