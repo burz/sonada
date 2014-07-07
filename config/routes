@@ -5,5 +5,8 @@
 /robots.txt RobotsR GET
 
 / HomeR GET
-/modules ModulesR GET POST
+
+/modules           ModulesR GET POST
+/modules/#ModuleId ModuleR GET
+
 /wave WaveR GET

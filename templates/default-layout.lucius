@@ -10,7 +10,7 @@ a {
     color: #CCCCB2;
 }
 
-h1 {
+h1, h2, label {
     color: #CCCCB2;
 }
 

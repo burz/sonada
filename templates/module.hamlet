@@ -1,0 +1,6 @@
+$maybe n <- name
+    <h2 id="moduleTitle">Module: #{n}
+$nothing
+    <h2 id="moduleTitle">Module
+
+^{_moduleInterface}

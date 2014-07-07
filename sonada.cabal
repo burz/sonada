@@ -22,6 +22,7 @@ library
                      Handler.Home
                      Handler.Partials
                      Handler.Modules
+                     Handler.Module
                      Handler.Wave
 
     if flag(dev) || flag(library-only)
