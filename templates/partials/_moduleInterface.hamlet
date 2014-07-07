@@ -11,7 +11,7 @@
 
     <div id="moduleNameField">
         <label for"moduleName">Name:
-            $maybe name <- moduleName md
-                <input type=text id="moduleName" value=#{name}>
+            $maybe n <- name
+                <input type=text id="moduleName" value=#{n}>
             $nothing
                 <input type=text id="moduleName">

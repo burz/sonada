@@ -7,6 +7,6 @@
 / HomeR GET
 
 /modules           ModulesR GET POST
-/modules/#ModuleId ModuleR GET
+/modules/#ModuleId ModuleR GET PUT
 
 /wave WaveR GET
