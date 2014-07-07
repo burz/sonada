@@ -19,6 +19,7 @@ import Text.Hamlet (hamletFile)
 import Yesod.Core.Types (Logger)
 
 #ifdef DEVELOPMENT
+minifym :: a -> Either b a
 minifym = Right
 #else
 import Text.Jasmine (minifym)
@@ -141,7 +142,8 @@ instance YesodAuth App where
                     }
 
     -- You can add other plugins like BrowserID, email or OAuth here
-    authPlugins _ = [authBrowserId def]
+    authPlugins _ = [ authBrowserId def
+                    ]
 
     authHttpManager = httpManager
 

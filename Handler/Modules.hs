@@ -7,7 +7,7 @@ import Import
 getModulesR :: Handler Html
 getModulesR = do
     modules <- runDB $ selectList [] []
-    let _moduleList = _moduleList' modules
+    let _moduleList = _moduleList' modules True
     defaultLayout $ do
         setTitle "Modules"
         $(widgetFile "modules")

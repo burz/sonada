@@ -1,7 +1,15 @@
 <ul id="moduleList">
-    $forall Entity _ module <- modules
-        <li class="moduleListing">
-            $maybe name <- moduleName module
-                #{name} #
-            <code>
-                #{moduleCode module}
+    $forall Entity mid module <- modules
+        $if showLinks
+            <a href=@{ModuleR mid}>
+                <li class="moduleListing">
+                    $maybe name <- moduleName module
+                        #{name} #
+                    <code>
+                        #{moduleCode module}
+        $else
+            <li class="moduleListing">
+                $maybe name <- moduleName module
+                    #{name} #
+                <code>
+                    #{moduleCode module}

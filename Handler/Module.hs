@@ -8,14 +8,11 @@ getModuleR :: ModuleId -> Handler Html
 getModuleR moduleId = do
     mmod <- runDB $ get moduleId
     defaultLayout $ case mmod of
-        Nothing  -> do { let code = Nothing
-                       ; let _moduleInterface = _moduleInterface' code
-                       ; setMessage "Module not found"
-                       ; $(widgetFile "homepage")
+        Nothing  -> do { setMessage "Module not found"
+                       ; notFound
                        }
-        Just md -> do { let code = Just $ moduleCode md
-                      ; let name = moduleName md
-                      ; let _moduleInterface = _moduleInterface' code
+        Just md -> do { let name = moduleName md
+                      ; let _moduleInterface = _moduleInterface' (Entity moduleId md)
                       ; $(widgetFile "module")
                       }
 
