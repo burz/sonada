@@ -110,3 +110,12 @@ FilterTool.prototype.filter = function (type, frequency) {
     this.node.type = type;
     this.node.frequency.value = frequency;
 }
+
+FilterTool.prototype.setType = function (type) {
+    this.node.type = type;
+}
+
+FilterTool.prototype.setFrequency = function (frequency) {
+    this.node.frequency.value = frequency;
+}
+

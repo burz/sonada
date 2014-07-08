@@ -24,6 +24,9 @@ library
                      Handler.Modules
                      Handler.Module
                      Handler.Wave
+                     Synthax.Algebra
+                     Synthax.AST
+                     Synthax.JSGen
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -44,6 +47,7 @@ library
                 EmptyDataDecls
                 NoMonomorphismRestriction
                 DeriveDataTypeable
+                DeriveFunctor
 
     build-depends: base                          >= 4          && < 5
                  , yesod                         >= 1.2.5      && < 1.3

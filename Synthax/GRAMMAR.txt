@@ -1,0 +1,17 @@
+x ::= ( a | b | ... | z ) 
+      ( a | b | ... | z 
+      | A | B | ... | Z 
+      | 0 | 1 | ... | 9 
+      | _ | ' )*
+
+i ::= [-] (0 | 1 | ... | 9)+ [ . (0 | 1 | ... | 9)+]
+
+j ::= javascript
+
+v ::=   Source x
+      | Code <<< j >>>
+      | (e)
+
+e ::=   Gain v i
+      | Crossfade v v i i
+      | Filter v x i
