@@ -81,6 +81,7 @@ library
                  , wai-logger                    >= 2.1        && < 2.2
                  , http-types                    == 0.8.*
                  , mtl                           == 2.1.*
+                 , array                         == 0.4.*
 
 executable         sonada
     if flag(library-only)

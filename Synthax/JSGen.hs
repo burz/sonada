@@ -11,6 +11,7 @@ import Synthax.Wrappers
 import Prelude
 import Control.Applicative
 import Control.Monad.State
+import Data.Array
 import Data.Monoid
 import Data.Text.Internal.Builder
 import Text.Julius
@@ -38,6 +39,9 @@ newFileHandle = state (\(i, j) -> (j, (i, j + 1)))
 bothNew :: HandleGenerator (Int, Int)
 bothNew = state (\(i, j) -> ((i, j), (i + 1, j + 1)))
 
+numberOfFileHandles :: HandleGenerator Int
+numberOfFileHandles = state (\(i, j) -> (j + 1, (i, j)))
+
 type JSAlgebra = MAlgebra HandleGenerator Expr (JSResult Builder)
 
 createJSLabel :: Int -> Builder
@@ -56,9 +60,13 @@ alg (Crossfade c c' v m) = (\n j j' -> let l = createJSLabel n in
 alg (Filter c t f) = (\n j -> let l = createJSLabel n in
     j >>= \s -> JSResult [] (filterWrapper l s t f) l) <$> newLabel <*> c
 
-jsGen' :: Fix Expr -> HandleGenerator (JSResult Builder)
-jsGen' e = mcata alg e
+jsGen'' :: Fix Expr -> HandleGenerator (JSResult Builder)
+jsGen'' e = mcata alg e
+
+jsGen' :: Fix Expr -> HandleGenerator (Builder, Builder)
+jsGen' e = jsGen'' e >>= \(JSResult fs j l) -> numberOfFileHandles >>= \n ->
+    let b = bufferWrapper n (array (0, n) fs) in return (b <> j, l)
 
 jsGen :: Fix Expr -> Javascript
-jsGen e = let JSResult fs j n = evalState (jsGen' e) (0, 0) in Javascript j
+jsGen e = let (j, l) = evalState (jsGen' e) (0, 0) in Javascript j
 
