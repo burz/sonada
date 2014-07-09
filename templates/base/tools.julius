@@ -61,6 +61,10 @@ function BufferTool(audioContext, files) {
     loader.load();
 }
 
+BufferTool.prototype.getBuffer = function (index) {
+    return this.buffers[index];
+}
+
 function SourceTool(audioContext, buffer, loop) {
     this.source = audioContext.createBufferSource();
 
@@ -80,12 +84,19 @@ GainTool.prototype.setValue = function (value) {
     this.node.gain.value = value;
 }
 
-function CrossfadeTool(sourceOne, sourceTwo) {
+function CrossfadeTool(sourceOne, sourceTwo, value, max) {
     this.controlOne = GainTool(sourceOne, 1);
     this.controlTwo = GainTool(sourceTwo, 0);
 
     this.sourceOne.connect(this.controlOne);
     this.sourceTwo.connect(this.controlTwo);
+
+    var v = value / max;
+    var gainOne = Math.cos((1 - v) * 0.5 * Math.PI);
+    var gainTwo = Math.cos(v * 0.5 * Math.PI);
+
+    this.controlOne.setValue(this.gainOne);
+    this.controlTwo.setValue(this.gainTwo);
 }
 
 CrossfadeTool.prototype.crossfade = function (value, max) {
