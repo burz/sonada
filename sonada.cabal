@@ -27,6 +27,7 @@ library
                      Synthax.Algebra
                      Synthax.AST
                      Synthax.Builders
+                     Synthax.Wrappers
                      Synthax.JSGen
 
     if flag(dev) || flag(library-only)
