@@ -1,5 +1,6 @@
 module Synthax.Parser
-( parseString
+( ParseError
+, parseString
 , parseText
 ) where
 
