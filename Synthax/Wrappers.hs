@@ -23,8 +23,8 @@ sourceWrapper label fileHandle = sid "var " .<> label
 codeWrapper :: Builder -> Text -> Builder
 codeWrapper label code = sid "var " .<> label
     <>. sid " = __audioContext().createScriptProcessor(16384, 0, 1);\n"
-    <>. code <>. sid "\n"
     <> label <>. sid ".onaudioprocess = function(audioProcessingEvent) {\n"
+    <>. code <>. sid "\n"
     <>. sid "var outputBuffer = audioProcessingEvent.outputBuffer;\n"
     <>. sid "var currentTime = audioContext.currentTime;\n"
     <>. sid "for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {\n"
@@ -36,21 +36,21 @@ codeWrapper label code = sid "var " .<> label
     <>. sid "outData[sample] = gen(sampleTime);\n"
     <>. sid "}\n" <>. sid "}\n" <>. sid "};\n"
 
-gainWrapper :: Builder -> Builder -> Float -> Builder
+gainWrapper :: Builder -> Builder -> Double -> Builder
 gainWrapper label source value = sid "var " .<> label
     <>. sid " = GainTool(__audioContext(), "
     <> source <>. sid ", " <>. show value <>. sid ");\n"
 
-crossfadeWrapper :: Builder -> Builder -> Builder -> Float -> Float -> Builder
+crossfadeWrapper :: Builder -> Builder -> Builder -> Double -> Double -> Builder
 crossfadeWrapper label source source' value max = sid "var " .<> label
     <>. sid " = CrossfadeTool(__audioContext(), "
     <> source <>. sid ", " <> source' <>. sid ", " <>. show value
     <>. sid ", " <>. show max <>. sid ");\n"
 
-filterWrapper :: Builder -> Builder -> Text -> Float -> Builder
+filterWrapper :: Builder -> Builder -> Text -> Double -> Builder
 filterWrapper label source typ frequency = sid "var " .<> label
     <>. sid " = FilterTool(__audioContext(), "
-    <> source <>. sid ", " <>. typ <>. sid ", " <>. show frequency
+    <> source <>. sid ", \"" <>. typ <>. sid "\", " <>. show frequency
     <>. sid ");\n"
 
 bufferWrapper :: Int -> Array Int Builder -> Builder

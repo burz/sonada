@@ -6,12 +6,16 @@ x ::= ( a | b | ... | z )
 
 i ::= [-] (0 | 1 | ... | 9)+ [ . (0 | 1 | ... | 9)+]
 
+f ::= "x"
+
 j ::= javascript
 
-v ::=   Source x
-      | Code <<< j >>>
+v ::=   Source f
+      | Code <<<j>>>
       | (e)
 
 e ::=   Gain v i
       | Crossfade v v i i
       | Filter v x i
+      | v
+

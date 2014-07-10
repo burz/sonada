@@ -8,8 +8,8 @@ import Data.Text
 data Expr a
     = Source Text
     | Code Text
-    | Gain a Float
-    | Crossfade a a Float Float
-    | Filter a Text Float
+    | Gain a Double
+    | Crossfade a a Double Double
+    | Filter a Text Double
     deriving Functor
 
