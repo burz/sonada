@@ -19,19 +19,20 @@ library
                      Settings
                      Settings.StaticFiles
                      Settings.Development
+                     Synthax.Algebra
+                     Synthax.AST
+                     Synthax.Lexer
+                     Synthax.Parser
+                     Synthax.Quoter
+                     Synthax.Builders
+                     Synthax.Wrappers
+                     Synthax.JSGen
                      Handler.Home
                      Handler.Partials
                      Handler.Modules
                      Handler.Module
                      Handler.Wave
-                     Synthax.Algebra
-                     Synthax.AST
-                     Synthax.Lexer
-                     Synthax.Parser
-                     Synthax.Builders
-                     Synthax.Wrappers
-                     Synthax.JSGen
-                     Synthax.Quoter
+                     Handler.Synthax
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

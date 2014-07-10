@@ -10,3 +10,5 @@
 /modules/#ModuleId ModuleR GET PUT
 
 /wave WaveR GET
+
+/synthax SynthaxR GET

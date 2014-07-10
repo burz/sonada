@@ -39,7 +39,7 @@ bothNew :: HandleGenerator (Int, Int)
 bothNew = state (\(i, j) -> ((i, j), (i + 1, j + 1)))
 
 numberOfFileHandles :: HandleGenerator Int
-numberOfFileHandles = state (\(i, j) -> (j + 1, (i, j)))
+numberOfFileHandles = state (\(i, j) -> (j, (i, j)))
 
 type JSAlgebra = MAlgebra HandleGenerator Expr (JSResult Builder)
 
@@ -67,5 +67,5 @@ jsGen' e = jsGen'' e >>= \(JSResult fs j l) -> numberOfFileHandles >>= \n ->
     let b = bufferWrapper n (array (0, n) fs) in return (b <> j, l)
 
 jsGen :: Fix Expr -> Javascript
-jsGen e = let (j, l) = evalState (jsGen' e) (0, 0) in Javascript j
+jsGen e = let (j, _) = evalState (jsGen' e) (0, 0) in Javascript j
 

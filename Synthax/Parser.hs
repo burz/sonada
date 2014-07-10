@@ -24,7 +24,7 @@ source = reserved "Source" *> symbol "\"" *> do
 code :: ExprParser
 code = reserved "Code" *> reservedOp "<<<" *> do
     js <- manyTill anyChar (try $ reservedOp ">>>")
-    return . Fx . Source $ pack js
+    return . Fx . Code $ pack js
 
 value :: ExprParser
 value = source

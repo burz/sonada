@@ -55,8 +55,9 @@ filterWrapper label source typ frequency = sid "var " .<> label
 
 bufferWrapper :: Int -> Array Int Builder -> Builder
 bufferWrapper 0 _ = fromString ""
-bufferWrapper size fileArray = sid "var __bufferContext = BufferTool(__audioContext(), ["
-    .<> foldr addFile (sid "\"" .<> (fileArray ! 0) <>. sid "\"") [1..(size - 1)]
+bufferWrapper size fileArray = let r = if size == 1 then [] else [1..(size - 1)] in
+    sid "var __bufferContext = BufferTool(__audioContext(), ["
+    .<> foldr addFile (sid "\"" .<> (fileArray ! 0) <>. sid "\"") r
     <>. sid "]);\n"
     where addFile i bs = let f = fileArray ! i in bs <>. sid ", \"" <> f <>. sid "\""
 
