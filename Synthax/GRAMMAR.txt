@@ -1,14 +1,18 @@
-x ::= ( a | b | ... | z ) 
-      ( a | b | ... | z 
-      | A | B | ... | Z 
-      | 0 | 1 | ... | 9 
-      | _ | ' )*
+x ::= ( a | b | ... | z
+      | A | B | ... | Z )
+      ( a | b | ... | z
+      | A | B | ... | Z
+      | _ )*
 
 i ::= [-] (0 | 1 | ... | 9)+ [ . (0 | 1 | ... | 9)+]
 
-f ::= "x"
+f ::= filepath
 
 j ::= javascript
+
+t ::=   lowpass  | highpass | bandpass
+      | lowshelf | peaking  | notch
+      | allpass
 
 v ::=   Source f
       | Code <<<j>>>
@@ -16,6 +20,6 @@ v ::=   Source f
 
 e ::=   Gain v i
       | Crossfade v v i i
-      | Filter v x i
+      | Filter v t i
       | v
 

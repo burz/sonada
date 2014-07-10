@@ -1,6 +1,5 @@
 module Synthax.JSGen
-( JSResult(..)
-, jsGen
+( jsGen
 ) where
 
 import Synthax.Algebra
