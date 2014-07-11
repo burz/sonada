@@ -12,3 +12,7 @@ Module
     code Text
     name Text Maybe
     deriving Show
+Synthax
+    code Text
+    name Text Maybe
+    deriving Show

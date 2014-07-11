@@ -1,3 +1,5 @@
+{-# LANGUAGE TypeSynonymInstances, FlexibleInstances #-}
+
 module Synthax.Builders
 ( BuilderMappend(..)
 , sid

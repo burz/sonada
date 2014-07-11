@@ -31,6 +31,7 @@ import Handler.Home
 import Handler.Modules
 import Handler.Module
 import Handler.Wave
+import Handler.RenderSynthax
 import Handler.Synthax
 
 -- This line actually creates our YesodDispatch instance. It is the second half

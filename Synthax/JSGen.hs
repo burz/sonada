@@ -1,5 +1,7 @@
 module Synthax.JSGen
 ( jsGen
+, jsResponse
+, jsonResponse
 ) where
 
 import Synthax.Algebra
@@ -10,10 +12,12 @@ import Synthax.Wrappers
 import Prelude
 import Control.Applicative
 import Control.Monad.State
+import Data.Aeson (object, (.=), encode)
 import Data.Array
 import Data.Monoid
 import Data.Text.Internal.Builder
-import Text.Julius
+import Import (ContentType, Content, typeJavascript, toContent, typeJson)
+import Text.Julius (Javascript(..))
 
 type BufferFile = Builder
 
@@ -66,6 +70,21 @@ jsGen' :: Fix Expr -> HandleGenerator (Builder, Builder)
 jsGen' e = jsGen'' e >>= \(JSResult fs j l) -> numberOfFileHandles >>= \n ->
     let b = bufferWrapper n (array (0, n) fs) in return (b <> j, l)
 
+evalJsGen' :: Fix Expr -> (Builder, Builder)
+evalJsGen' e = evalState (jsGen' e) (0, 0)
+
 jsGen :: Fix Expr -> Javascript
-jsGen e = let (j, _) = evalState (jsGen' e) (0, 0) in Javascript j
+jsGen e = let (j, _) = evalJsGen' e in Javascript j
+
+jsResponse :: Fix Expr -> (ContentType, Content)
+jsResponse e = let (j, _) = evalJsGen' e in
+    (typeJavascript, toContent $ toLazyText j)
+
+jsonResponse :: Fix Expr -> (ContentType, Content)
+jsonResponse e = let (j, l) = evalJsGen' e in
+    let v = object
+            [ "label" .= toLazyText l
+            , "script" .= toLazyText j
+            ] in
+    (typeJson, toContent $ encode v)
 

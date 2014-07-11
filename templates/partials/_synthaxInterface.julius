@@ -6,5 +6,42 @@ function __audioContext() {
     if(___audioContext___ === null) {
         ___audioContext___ = new AudioContext();
     }
+
+    return ___audioContext___;
 }
 
+var ___scriptLocation___ = null;
+
+function __scriptLocation() {
+    if(___scriptLocation___ === null) {
+        ___scriptLocation___ = document.createElement('script');
+    }
+
+    return ___scriptLocation___;
+}
+
+function playSynthax() {
+    alert("got click");
+
+    var data = {
+        code: editor.getValue(),
+        name: $("#synthaxName").val()
+    };
+
+    var request = $.ajax({
+        type: "POST",
+        url: "#{rawJS url}",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        var m = msg;
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Sending the synthax to the server failed: " + textStatus);
+    });
+}
+
+$("#synthaxPlay").click(playSynthax);

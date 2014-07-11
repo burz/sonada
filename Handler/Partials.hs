@@ -50,7 +50,9 @@ _waveChart' modules = do
 
 _synthaxInterface' :: Maybe Text -> Widget
 _synthaxInterface' code = do
+    renderUrl <- getUrlRender
     let name = Nothing :: Maybe Text
     let _console = _console' SynthaxConsole code
+    let url = renderUrl RenderSynthaxR
     $(widgetFile "/partials/_synthaxInterface")
 

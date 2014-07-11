@@ -12,3 +12,5 @@
 /wave WaveR GET
 
 /synthax SynthaxR GET
+
+/render/synthax RenderSynthaxR POST

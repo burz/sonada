@@ -26,3 +26,17 @@ instance FromJSON Module where
         <$> o .: "code"
         <*> o .: "name"
     parseJSON _ = mzero
+
+instance ToJSON (Entity Synthax) where
+    toJSON (Entity sid s) = object
+        [ "id" .= (String $ toPathPiece sid)
+        , "code" .= synthaxCode s
+        , "name" .= synthaxName s
+        ]
+
+instance FromJSON Synthax where
+    parseJSON (Object o) = Synthax
+        <$> o .: "code"
+        <*> o .: "name"
+    parseJSON _ = mzero
+

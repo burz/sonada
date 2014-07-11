@@ -9,8 +9,8 @@ function sendModule(type) {
     var request = $.ajax({
         type: type,
         url: "#{rawJS url}",
-        contentType:'application/json',
-        data: JSON.stringify(data),
+        contentType: "application/json",
+        data: JSON.stringify(data)
     })
 
     request.done(function (msg) {
