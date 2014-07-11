@@ -72,6 +72,14 @@ function SourceTool(audioContext, buffer, loop) {
     this.source.loop = loop;
 }
 
+SourceTool.prototype.connect = function (destination) {
+    this.source.connect(destination);
+}
+
+SourceTool.prototype.disconnect = function () {
+    this.source.disconnect();
+}
+
 function GainTool(audioContext, source, value) {
     this.node = audioContext.createGain();
 
@@ -82,6 +90,14 @@ function GainTool(audioContext, source, value) {
 
 GainTool.prototype.setValue = function (value) {
     this.node.gain.value = value;
+}
+
+GainTool.prototype.connect = function (destination) {
+    this.node.connect(destination);
+}
+
+GainTool.prototype.disconnect = function () {
+    this.node.disconnect();
 }
 
 function CrossfadeTool(sourceOne, sourceTwo, value, max) {
@@ -108,6 +124,16 @@ CrossfadeTool.prototype.crossfade = function (value, max) {
     this.controlTwo.setValue(this.gainTwo);
 }
 
+CrossfadeTool.prototype.connect = function (destination) {
+    this.controlOne.connect(destination);
+    this.controlTwo.connect(destination);
+}
+
+CrossfadeTool.prototype.disconnect = function () {
+    this.controlOne.disconnect();
+    this.controlTwo.disconnect();
+}
+
 function FilterTool(audioContext, source, type, frequency) {
     this.node = audioContext.createBiquadFilter();
 
@@ -128,5 +154,13 @@ FilterTool.prototype.setType = function (type) {
 
 FilterTool.prototype.setFrequency = function (frequency) {
     this.node.frequency.value = frequency;
+}
+
+FilterTool.prototype.connect = function (destination) {
+    this.node.connect(destination);
+}
+
+FilterTool.prototype.disconnect = function () {
+    this.node.disconnect();
 }
 

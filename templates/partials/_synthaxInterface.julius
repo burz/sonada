@@ -12,16 +12,32 @@ function __audioContext() {
 
 var ___scriptLocation___ = null;
 
-function __scriptLocation() {
+function __setScript(value) {
     if(___scriptLocation___ === null) {
         ___scriptLocation___ = document.createElement('script');
     }
+    else {
+        document.body.removeChild(___scriptLocation___);
+    }
 
-    return ___scriptLocation___;
+    ___scriptLocation___.text = value;
+
+    document.body.appendChild(___scriptLocation___);
+}
+
+var ___topVariable___ = null;
+
+function stopSynthax() {
+    if(___topVariable___ === null)
+    {
+        return;
+    }
+
+    ___topVariable___.disconnect();
 }
 
 function playSynthax() {
-    alert("got click");
+    stopSynthax();
 
     var data = {
         code: editor.getValue(),
@@ -36,7 +52,11 @@ function playSynthax() {
     });
 
     request.done(function (msg) {
-        var m = msg;
+        __setScript(msg.script);
+
+        ___topVariable___ = window[msg.label];
+
+        ___topVariable___.connect(__audioContext().destination);
     });
 
     request.fail(function (jqXHR, textStatus) {
@@ -45,3 +65,5 @@ function playSynthax() {
 }
 
 $("#synthaxPlay").click(playSynthax);
+$("#synthaxStop").click(stopSynthax);
+

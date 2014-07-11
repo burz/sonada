@@ -26,7 +26,7 @@ codeWrapper label code = sid "var " .<> label
     <> label <>. sid ".onaudioprocess = function(audioProcessingEvent) {\n"
     <>. code <>. sid "\n"
     <>. sid "var outputBuffer = audioProcessingEvent.outputBuffer;\n"
-    <>. sid "var currentTime = audioContext.currentTime;\n"
+    <>. sid "var currentTime = __audioContext().currentTime;\n"
     <>. sid "for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {\n"
     <>. sid "var outData = outputBuffer.getChannelData(channel);\n"
     <>. sid "for(var sample = 0; sample < outputBuffer.length; sample++) {\n"

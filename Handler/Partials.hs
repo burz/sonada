@@ -22,7 +22,6 @@ _moduleList' modules showLinks = $(widgetFile "partials/_moduleList")
 
 _moduleInterface' :: Maybe (Entity Module) -> Widget
 _moduleInterface' mem = do
-    $(widgetFile "base/tools")
     renderUrl <- getUrlRender
     case mem of
         Nothing -> do
@@ -50,6 +49,7 @@ _waveChart' modules = do
 
 _synthaxInterface' :: Maybe Text -> Widget
 _synthaxInterface' code = do
+    $(widgetFile "base/tools")
     renderUrl <- getUrlRender
     let name = Nothing :: Maybe Text
     let _console = _console' SynthaxConsole code
