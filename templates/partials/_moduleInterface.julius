@@ -1,3 +1,5 @@
+editor.getSession().setMode("ace/mode/javascript");
+
 function sendModule(type) {
     var data = {
         code: editor.getValue(),

@@ -1,0 +1,17 @@
+<div id="synthaxInterface">
+    <center>
+        <div id="synthaxInfo">
+
+    ^{_console}
+
+    <div id="synthaxButtons">
+        <button id="synthaxSave">Save
+        <button id="synthaxPlay">Play
+        <button id="synthaxStop">Stop
+
+    <div id="synthaxNameField">
+        <label for="synthaxName">
+            $maybe n <- name
+                <input type=text id="synthaxName" value=#{n}>
+            $nothing
+                <input type=text id="synthaxName">

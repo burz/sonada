@@ -3,4 +3,8 @@
         $maybe code' <- code
             #{code'}
         $nothing
-            _{MsgDefaultConsole}
+            $case consoleType
+                $of ModuleConsole
+                    _{MsgModuleConsoleDefault}
+                $of SynthaxConsole
+                    _{MsgSynthaxConsoleDefault}

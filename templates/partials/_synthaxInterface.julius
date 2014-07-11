@@ -1,0 +1,10 @@
+editor.getSession().setMode("ace/mode/text");
+
+var ___audioContext___ = null;
+
+function __audioContext() {
+    if(___audioContext___ === null) {
+        ___audioContext___ = new AudioContext();
+    }
+}
+

@@ -1,0 +1,6 @@
+$maybe n <- name
+    <h2 id="synthaxTitle">_{MsgSynthaxName}: #{n}
+$nothing
+    <h2 id="synthaxTitle">_{MsgSynthaxName}
+
+^{_synthaxInterface}

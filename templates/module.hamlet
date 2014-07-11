@@ -1,6 +1,6 @@
 $maybe n <- name
-    <h2 id="moduleTitle">Module: #{n}
+    <h2 id="moduleTitle">_{MsgModuleName}: #{n}
 $nothing
-    <h2 id="moduleTitle">Module
+    <h2 id="moduleTitle">_{MsgModuleName}
 
 ^{_moduleInterface}

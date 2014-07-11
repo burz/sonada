@@ -2,8 +2,12 @@
     <h1>
         <a href=@{HomeR}>_{MsgSiteName}
 
-    <a href=@{ModulesR}>Modules
+    <a href=@{ModulesR}>_{MsgModulesName}
 
     --
 
-    <a href=@{WaveR}>Wave
+    <a href=@{WaveR}>_{MsgWaveName}
+
+    --
+
+    <a href=@{SynthaxR}>_{MsgSynthaxName}
