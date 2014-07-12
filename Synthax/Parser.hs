@@ -9,7 +9,7 @@ import Synthax.AST
 import Synthax.Lexer
 
 import Prelude hiding (filter)
-import Control.Applicative ((<*), (*>))
+import Control.Applicative ((<$>), (<*), (*>))
 import Data.Text hiding (words, map, filter)
 import Text.Parsec
 import Text.Parsec.String
@@ -26,9 +26,13 @@ code = reserved "Code" *> reservedOp "<<<" *> do
     js <- manyTill anyChar (try $ reservedOp ">>>")
     return . Fx . Code $ pack js
 
+var :: ExprParser
+var = Fx . Var . pack <$> identifier
+
 value :: ExprParser
 value = source
     <|> code
+    <|> var
     <|> parens expression
 
 gain :: ExprParser
@@ -60,9 +64,24 @@ expression
     <|> filter
     <|> value
 
-parseString :: String -> Either ParseError (Fix Expr)
-parseString s = parse (expression <* eof) "" s
+letStmt :: ExprParser
+letStmt = reserved "Let" *> do
+    i <- identifier
+    _ <- symbol "="
+    e <- expression
+    return . Fx $ Let (pack i) e
 
-parseText :: Text -> Either ParseError (Fix Expr)
-parseText t = parse (expression <* eof) "" $ unpack t
+statement :: ExprParser
+statement
+      = letStmt
+    <|> expression
+
+statements :: Parser [Fix Expr]
+statements = semiSep1 statement
+
+parseString :: String -> Either ParseError [Fix Expr]
+parseString s = parse (statements <* eof) "" s
+
+parseText :: Text -> Either ParseError [Fix Expr]
+parseText t = parse (statements <* eof) "" $ unpack t
 

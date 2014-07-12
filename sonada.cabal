@@ -86,6 +86,7 @@ library
                  , mtl                           == 2.1.*
                  , array                         == 0.4.*
                  , parsec                        == 3.1.*
+                 , containers                    == 0.5.*
 
 executable         sonada
     if flag(library-only)

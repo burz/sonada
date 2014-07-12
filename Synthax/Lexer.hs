@@ -7,6 +7,7 @@ module Synthax.Lexer
 , reservedOp
 , parens
 , float
+, semiSep1
 ) where
 
 import Prelude
@@ -16,7 +17,7 @@ import Text.Parsec.Language
 import Text.Parsec.String
 
 names :: [String]
-names = words "Source Code Gain Crossfade Filter"
+names = words "Source Code Gain Crossfade Filter Let"
 
 opNames :: [String]
 opNames = words "<<< >>>"
@@ -49,4 +50,7 @@ parens = Token.parens lexer
 
 float :: Parser Double
 float = Token.float lexer
+
+semiSep1 :: Parser a -> Parser [a]
+semiSep1 = Token.semiSep1 lexer
 

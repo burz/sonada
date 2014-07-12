@@ -16,10 +16,14 @@ t ::=   lowpass  | highpass | bandpass
 
 v ::=   Source f
       | Code <<<j>>>
+      | x
       | (e)
 
 e ::=   Gain v i
       | Crossfade v v i i
       | Filter v t i
       | v
+
+s ::=   Let x = e
+      | e
 
