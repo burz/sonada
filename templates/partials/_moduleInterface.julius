@@ -11,7 +11,7 @@ function sendModule(type) {
         url: "#{rawJS url}",
         contentType: "application/json",
         data: JSON.stringify(data)
-    })
+    });
 
     request.done(function (msg) {
         alert("Module saved");

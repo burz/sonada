@@ -6,11 +6,17 @@ import Synthax.Parser
 import Synthax.JSGen
 
 import Import
+import Data.Text (pack)
 
 postRenderSynthaxR :: Handler Html
 postRenderSynthaxR = do
     s <- requireJsonBody :: Handler Synthax
     let r = parseText $ synthaxCode s
-    let e = case r of Right e' -> e'
-    sendResponse $ jsonResponse e
+    case r of
+        Left e -> invalidArgs [pack $ "Error during parsing: " ++ show e]
+        Right e -> do
+            let jr = jsonResponse e
+            case jr of
+                Nothing -> invalidArgs ["Variables must be declared before they are used"]
+                Just c -> sendResponse c
 

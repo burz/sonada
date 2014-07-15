@@ -97,28 +97,43 @@ alg vm (Let i e) = (\n mjr -> case mjr of
 jsGen'' :: VarMap -> Fix Expr -> HandleGenerator (MaybeJSResult Builder)
 jsGen'' vm e = mcata (alg vm) e
 
-jsGen' :: VarMap -> Fix Expr -> HandleGenerator (Maybe (Builder, Builder))
-jsGen' vm e = jsGen'' vm e >>= \mjr -> case mjr of
+(~>>) :: HandleGenerator (MaybeJSResult Builder)
+         -> Fix Expr
+         -> HandleGenerator (MaybeJSResult Builder)
+(~>>) r e = do
+    mjsr <- r
+    case mjsr of
+        MJR Nothing -> return $ MJR Nothing
+        MJR (Just (JSResult vm _ _ _)) -> do
+            mjsr' <- jsGen'' vm e
+            return $ mjsr >>= \_ -> mjsr'
+
+chainJSGen :: [Fix Expr] -> HandleGenerator (MaybeJSResult Builder)
+chainJSGen [] = return $ MJR Nothing
+chainJSGen (e:es) = foldr (\e r -> r ~>> e) (jsGen'' Map.empty e) es
+
+jsGen' :: [Fix Expr] -> HandleGenerator (Maybe (Builder, Builder))
+jsGen' e = chainJSGen e >>= \mjr -> case mjr of
     MJR Nothing -> return Nothing
     MJR (Just (JSResult _ fs j l)) -> numberOfFileHandles >>= \n ->
         let b = bufferWrapper n (array (0, n) fs) in
         return $ Just (b <> j, l)
 
-evalJsGen' :: Fix Expr -> Maybe (Builder, Builder)
-evalJsGen' e = evalState (jsGen' Map.empty e) (0, 0)
+evalJSGen' :: [Fix Expr] -> Maybe (Builder, Builder)
+evalJSGen' e = evalState (jsGen' e) (0, 0)
 
 jsGen :: [Fix Expr] -> Maybe Javascript
-jsGen e = let r = evalJsGen' e in case r of
+jsGen e = let r = evalJSGen' e in case r of
     Nothing -> Nothing
     Just (j, _) -> Just $ Javascript j
 
 jsResponse :: [Fix Expr] -> Maybe (ContentType, Content)
-jsResponse e = let r = evalJsGen' e in case r of
+jsResponse e = let r = evalJSGen' e in case r of
     Nothing -> Nothing
     Just (j, _) -> Just $ (typeJavascript, toContent $ toLazyText j)
 
 jsonResponse :: [Fix Expr] -> Maybe (ContentType, Content)
-jsonResponse e = let r = evalJsGen' e in case r of
+jsonResponse e = let r = evalJSGen' e in case r of
     Nothing -> Nothing
     Just (j, l) -> let v = object [ "label" .= toLazyText l
                                   , "script" .= toLazyText j
