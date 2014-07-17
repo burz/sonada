@@ -22,9 +22,9 @@ getModulesR = do
 
 postModulesR :: Handler ()
 postModulesR = do
-    Entity _ _ <- requireAuth
+    Entity uid _ <- requireAuth
     ModuleResponse c n <- requireJsonBody
     t <- liftIO getCurrentTime
-    _ <- runDB . insert $ Module c n t
+    _ <- runDB . insert $ Module c n uid t
     sendResponseStatus status201 ("CREATED" :: Text)
 

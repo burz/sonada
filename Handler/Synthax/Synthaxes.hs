@@ -22,9 +22,9 @@ getSynthaxesR = do
 
 postSynthaxesR :: Handler ()
 postSynthaxesR = do
-    Entity _ _ <- requireAuth
+    Entity uid _ <- requireAuth
     SynthaxResponse c n <- requireJsonBody
     t <- liftIO $ getCurrentTime
-    _ <- runDB $ insert $ Synthax c n t
+    _ <- runDB $ insert $ Synthax c n uid t
     sendResponseStatus status201 ("CREATED" :: Text)
 

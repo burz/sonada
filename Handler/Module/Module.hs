@@ -26,9 +26,9 @@ getModuleR moduleId = do
 
 putModuleR :: ModuleId -> Handler Html
 putModuleR moduleId = do
-    Entity _ _ <- requireAuth
+    Entity uid _ <- requireAuth
     ModuleResponse c n <- requireJsonBody
     t <- liftIO getCurrentTime
-    runDB $ replace moduleId $ Module c n t
+    runDB $ replace moduleId $ Module c n uid t
     sendResponseStatus status201 ("UPDATED" :: Text)
 

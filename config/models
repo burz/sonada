@@ -11,10 +11,12 @@ Email
 Module
     code Text
     name Text Maybe
+    user UserId
     created UTCTime default=CURRENT_TIME
     deriving Show
 Synthax
     code Text
     name Text Maybe
+    user UserId
     created UTCTime default=CURRENT_TIME
     deriving Show

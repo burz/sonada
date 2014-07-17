@@ -27,9 +27,9 @@ getSynthaxR synthaxId = do
 
 putSynthaxR :: SynthaxId -> Handler Html
 putSynthaxR synthaxId = do
-    Entity _ _ <- requireAuth
+    Entity uid _ <- requireAuth
     SynthaxResponse c n <- requireJsonBody
     t <- liftIO $ getCurrentTime
-    runDB . replace synthaxId $ Synthax c n t
+    runDB . replace synthaxId $ Synthax c n uid t
     sendResponseStatus status201 ("UPDATED" :: Text)
 

@@ -1,3 +1,6 @@
+$maybe Entity _ user <- muser
+    ^{_userInfo' user}
+
 <center>
     <h2>Welcome to sonada!
 

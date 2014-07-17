@@ -2,10 +2,16 @@ module Handler.Home
 ( getHomeR
 ) where
 
+import Handler.Partials
+
 import Import
+import Yesod.Auth
 
 getHomeR :: Handler Html
-getHomeR = defaultLayout $ do
-    setTitle "sonada"
-    $(widgetFile "homepage")
+getHomeR = do
+    muser <- maybeAuth
+    defaultLayout $ do
+        setTitle "sonada"
+        let _userInfo = _userInfo'
+        $(widgetFile "homepage")
 
