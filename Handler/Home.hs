@@ -1,12 +1,11 @@
-module Handler.Home where
-
-import Handler.Partials
+module Handler.Home
+( getHomeR
+) where
 
 import Import
 
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
     setTitle "sonada"
-    let _moduleInterface = _moduleInterface' Nothing
     $(widgetFile "homepage")
 

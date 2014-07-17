@@ -1,1 +1,8 @@
-^{_moduleInterface}
+<center>
+    <h2>Welcome to sonada!
+
+    <h3>
+        Get started by making a
+        <a href=@{ModuleHomeR}>module
+        or writing some
+        <a href=@{SynthaxHomeR}>synthax
