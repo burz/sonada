@@ -4,20 +4,25 @@ module Handler.Synthax.Synthaxes
 ) where
 
 import Handler.Partials
+import Handler.Synthax.Partials
 
 import Import
 import Data.Time
+import Yesod.Auth
 
 getSynthaxesR :: Handler Html
 getSynthaxesR = do
+    Entity _ user <- requireAuth
     synthaxes <- runDB $ selectList [] [Desc SynthaxCreated]
-    let _synthaxList = _synthaxList' synthaxes True
     defaultLayout $ do
         setTitle "Synthaxes"
-        $(widgetFile "synthaxes")
+        let _userInfo = _userInfo' user
+        let _synthaxList = _synthaxList' synthaxes True
+        $(widgetFile "Synthax/synthaxes")
 
 postSynthaxesR :: Handler ()
 postSynthaxesR = do
+    Entity _ _ <- requireAuth
     SynthaxResponse c n <- requireJsonBody
     t <- liftIO $ getCurrentTime
     _ <- runDB $ insert $ Synthax c n t

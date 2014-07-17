@@ -1,0 +1,6 @@
+<div id="userInfo">
+    #{userIdent user}
+
+    --
+
+    <a href=@{AuthR LogoutR}>Logout

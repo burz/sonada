@@ -1,3 +1,5 @@
+^{_userInfo}
+
 $maybe n <- name
     <h2 id="moduleTitle">_{MsgModuleName}: #{n}
 $nothing

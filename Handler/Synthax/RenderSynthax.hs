@@ -7,9 +7,11 @@ import Synthax.JSGen
 
 import Import
 import Data.Text (pack)
+import Yesod.Auth
 
 postRenderSynthaxR :: Handler Html
 postRenderSynthaxR = do
+    Entity _ _ <- requireAuth
     SynthaxResponse c _ <- requireJsonBody
     let r = parseText c
     case r of

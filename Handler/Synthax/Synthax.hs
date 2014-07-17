@@ -4,12 +4,15 @@ module Handler.Synthax.Synthax
 ) where
 
 import Handler.Partials
+import Handler.Synthax.Partials
 
 import Import
 import Data.Time
+import Yesod.Auth
 
 getSynthaxR :: SynthaxId -> Handler Html
 getSynthaxR synthaxId = do
+    Entity _ user <- requireAuth
     msyn <- runDB $ get synthaxId
     defaultLayout $ case msyn of
         Nothing -> do
@@ -18,11 +21,13 @@ getSynthaxR synthaxId = do
         Just s -> do
             setTitle "Synthax"
             let name = synthaxName s
+            let _userInfo = _userInfo' user
             let _synthaxInterface = _synthaxInterface' . Just $ Entity synthaxId s
-            $(widgetFile "synthax")
+            $(widgetFile "Synthax/synthax")
 
 putSynthaxR :: SynthaxId -> Handler Html
 putSynthaxR synthaxId = do
+    Entity _ _ <- requireAuth
     SynthaxResponse c n <- requireJsonBody
     t <- liftIO $ getCurrentTime
     runDB . replace synthaxId $ Synthax c n t

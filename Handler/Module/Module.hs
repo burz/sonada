@@ -4,12 +4,15 @@ module Handler.Module.Module
 ) where
 
 import Handler.Partials
+import Handler.Module.Partials
 
 import Import
 import Data.Time
+import Yesod.Auth
 
 getModuleR :: ModuleId -> Handler Html
 getModuleR moduleId = do
+    Entity _ user <- requireAuth
     mmod <- runDB $ get moduleId
     defaultLayout $ case mmod of
         Nothing  -> do
@@ -17,11 +20,13 @@ getModuleR moduleId = do
             notFound
         Just md -> do
             let name = moduleName md
+            let _userInfo = _userInfo' user
             let _moduleInterface = _moduleInterface' (Just $Entity moduleId md)
-            $(widgetFile "module")
+            $(widgetFile "Module/module")
 
 putModuleR :: ModuleId -> Handler Html
 putModuleR moduleId = do
+    Entity _ _ <- requireAuth
     ModuleResponse c n <- requireJsonBody
     t <- liftIO getCurrentTime
     runDB $ replace moduleId $ Module c n t

@@ -27,12 +27,15 @@ library
                      Synthax.Builders
                      Synthax.Wrappers
                      Synthax.JSGen
-                     Handler.Home
                      Handler.Partials
+                     Handler.Home
+                     Handler.Module.Partials
                      Handler.Module.ModuleHome
                      Handler.Module.Modules
                      Handler.Module.Module
-                     Handler.Wave
+                     Handler.Wave.Partials
+                     Handler.Wave.Wave
+                     Handler.Synthax.Partials
                      Handler.Synthax.SynthaxHome
                      Handler.Synthax.RenderSynthax
                      Handler.Synthax.Synthaxes

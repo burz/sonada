@@ -1,0 +1,5 @@
+#userInfo {
+    position: absolute;
+    top: 5%;
+    left: 45%;
+}
