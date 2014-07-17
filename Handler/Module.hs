@@ -1,8 +1,12 @@
-module Handler.Module where
+module Handler.Module
+( getModuleR
+, putModuleR
+) where
 
 import Handler.Partials
 
 import Import
+import Data.Time
 
 getModuleR :: ModuleId -> Handler Html
 getModuleR moduleId = do
@@ -18,7 +22,8 @@ getModuleR moduleId = do
 
 putModuleR :: ModuleId -> Handler Html
 putModuleR moduleId = do
-    m <- requireJsonBody :: Handler Module
-    runDB $ replace moduleId m
+    ModuleResponse c n <- requireJsonBody
+    t <- liftIO getCurrentTime
+    runDB $ replace moduleId $ Module c n t
     sendResponseStatus status201 ("UPDATED" :: Text)
 

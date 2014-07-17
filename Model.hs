@@ -26,8 +26,10 @@ instance ToJSON (Entity Module) where
         , "name" .= moduleName m
         ]
 
-instance FromJSON Module where
-    parseJSON (Object o) = (\c n -> Module c $ discardEmptyString n)
+data ModuleResponse = ModuleResponse Text (Maybe Text)
+
+instance FromJSON ModuleResponse where
+    parseJSON (Object o) = (\c n -> ModuleResponse c $ discardEmptyString n)
         <$> o .: "code"
         <*> o .: "name"
     parseJSON _ = mzero
