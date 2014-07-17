@@ -28,8 +28,9 @@ import Yesod.Core.Types (loggerSet, Logger (Logger))
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
 import Handler.Home
-import Handler.Modules
-import Handler.Module
+import Handler.Module.ModuleHome
+import Handler.Module.Modules
+import Handler.Module.Module
 import Handler.Wave
 import Handler.Synthax.SynthaxHome
 import Handler.Synthax.RenderSynthax

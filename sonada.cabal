@@ -29,8 +29,9 @@ library
                      Synthax.JSGen
                      Handler.Home
                      Handler.Partials
-                     Handler.Modules
-                     Handler.Module
+                     Handler.Module.ModuleHome
+                     Handler.Module.Modules
+                     Handler.Module.Module
                      Handler.Wave
                      Handler.Synthax.SynthaxHome
                      Handler.Synthax.RenderSynthax

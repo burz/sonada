@@ -1,4 +1,4 @@
-module Handler.Module
+module Handler.Module.Module
 ( getModuleR
 , putModuleR
 ) where

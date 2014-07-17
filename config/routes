@@ -6,6 +6,7 @@
 
 / HomeR GET
 
+/module            ModuleHomeR GET
 /modules           ModulesR GET POST
 /modules/#ModuleId ModuleR GET PUT
 

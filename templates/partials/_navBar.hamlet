@@ -2,6 +2,10 @@
     <h1>
         <a href=@{HomeR}>_{MsgSiteName}
 
+    <a href=@{ModuleHomeR}>_{MsgModuleName}
+
+    --
+
     <a href=@{ModulesR}>_{MsgModulesName}
 
     --
