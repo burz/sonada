@@ -15,4 +15,5 @@ Module
 Synthax
     code Text
     name Text Maybe
+    created UTCTime default=CURRENT_TIME
     deriving Show

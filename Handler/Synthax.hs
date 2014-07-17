@@ -1,15 +1,14 @@
 module Handler.Synthax
-( getSynthaxR
+( putSynthaxR
 ) where
 
-import Handler.Partials
-
 import Import
+import Data.Time
 
-getSynthaxR :: Handler Html
-getSynthaxR = defaultLayout $ do
-    setTitle "Synthax"
-    let name = Nothing :: Maybe Text
-    let _synthaxInterface = _synthaxInterface' Nothing
-    $(widgetFile "synthax")
+putSynthaxR :: SynthaxId -> Handler Html
+putSynthaxR synthaxId = do
+    SynthaxResponse c n <- requireJsonBody
+    t <- liftIO $ getCurrentTime
+    runDB . replace synthaxId $ Synthax c n t
+    sendResponseStatus status201 ("UPDATED" :: Text)
 

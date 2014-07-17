@@ -110,7 +110,7 @@ jsGen'' vm e = mcata (alg vm) e
 
 chainJSGen :: [Fix Expr] -> HandleGenerator (MaybeJSResult Builder)
 chainJSGen [] = return $ MJR Nothing
-chainJSGen (e:es) = foldr (\e r -> r ~>> e) (jsGen'' Map.empty e) es
+chainJSGen (e:es) = foldr (\e' r -> r ~>> e') (jsGen'' Map.empty e) es
 
 jsGen' :: [Fix Expr] -> HandleGenerator (Maybe (Builder, Builder))
 jsGen' e = chainJSGen e >>= \mjr -> case mjr of

@@ -10,7 +10,7 @@
         <button id="synthaxStop">Stop
 
     <div id="synthaxNameField">
-        <label for="synthaxName">
+        <label for="synthaxName">Name:
             $maybe n <- name
                 <input type=text id="synthaxName" value=#{n}>
             $nothing

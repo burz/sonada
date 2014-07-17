@@ -46,7 +46,7 @@ function playSynthax() {
 
     var request = $.ajax({
         type: "POST",
-        url: "#{rawJS url}",
+        url: "#{rawJS genCodeUrl}",
         contentType: "application/json",
         data: JSON.stringify(data)
     });
@@ -64,6 +64,29 @@ function playSynthax() {
     });
 }
 
+function saveSynthax() {
+    var data = {
+        code: editor.getValue(),
+        name: $("#synthaxName").val()
+    };
+
+    var request = $.ajax({
+        type: "#{rawJS saveRequestType}",
+        url: "#{rawJS saveSynthaxUrl}",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        alert("Synthax saved");
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Saving the synthax to the server failed: " + textStatus);
+    });
+}
+
+$("#synthaxSave").click(saveSynthax);
 $("#synthaxPlay").click(playSynthax);
 $("#synthaxStop").click(stopSynthax);
 

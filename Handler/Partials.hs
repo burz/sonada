@@ -47,12 +47,21 @@ _waveChart' modules = do
     let _chart = _chart'
     $(widgetFile "partials/_waveChart")
 
-_synthaxInterface' :: Maybe Text -> Widget
-_synthaxInterface' code = do
-    $(widgetFile "base/tools")
+_synthaxInterface' :: Maybe (Entity Synthax) -> Widget
+_synthaxInterface' mes = do
     renderUrl <- getUrlRender
-    let name = Nothing :: Maybe Text
+    $(widgetFile "base/tools")
+    let name = mes >>= \(Entity _ s) -> synthaxName s >>= \t -> Just t
+    let code = mes >>= \(Entity _ s) -> Just $ synthaxCode s
     let _console = _console' SynthaxConsole code
-    let url = renderUrl RenderSynthaxR
-    $(widgetFile "/partials/_synthaxInterface")
+    let genCodeUrl = renderUrl RenderSynthaxR
+    case mes of
+        Nothing -> do
+            let saveRequestType = "POST" :: Text
+            let saveSynthaxUrl = renderUrl SynthaxesR
+            $(widgetFile "/partials/_synthaxInterface")
+        Just (Entity sid _) -> do
+            let saveRequestType = "PUT" :: Text
+            let saveSynthaxUrl = renderUrl $ SynthaxR sid
+            $(widgetFile "/partials/_synthaxInterface")
 
