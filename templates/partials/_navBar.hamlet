@@ -10,4 +10,8 @@
 
     --
 
-    <a href=@{SynthaxesR}>_{MsgSynthaxName}
+    <a href=@{SynthaxHomeR}>_{MsgSynthaxName}
+
+    --
+
+    <a href=@{SynthaxesR}>_{MsgSynthaxesName}

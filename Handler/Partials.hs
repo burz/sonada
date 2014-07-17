@@ -3,6 +3,7 @@ module Handler.Partials
 , _moduleInterface'
 , _waveChart'
 , _synthaxInterface'
+, _synthaxList'
 ) where
 
 import Model
@@ -64,4 +65,7 @@ _synthaxInterface' mes = do
             let saveRequestType = "PUT" :: Text
             let saveSynthaxUrl = renderUrl $ SynthaxR sid
             $(widgetFile "/partials/_synthaxInterface")
+
+_synthaxList' :: [Entity Synthax] -> Bool -> Widget
+_synthaxList' synthaxes showLinks = $(widgetFile "/partials/_synthaxList")
 

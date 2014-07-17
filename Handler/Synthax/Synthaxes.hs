@@ -1,4 +1,4 @@
-module Handler.Synthaxes
+module Handler.Synthax.Synthaxes
 ( getSynthaxesR
 , postSynthaxesR
 ) where
@@ -9,11 +9,12 @@ import Import
 import Data.Time
 
 getSynthaxesR :: Handler Html
-getSynthaxesR = defaultLayout $ do
-    setTitle "Synthax"
-    let name = Nothing :: Maybe Text
-    let _synthaxInterface = _synthaxInterface' Nothing
-    $(widgetFile "synthax")
+getSynthaxesR = do
+    synthaxes <- runDB $ selectList [] [Desc SynthaxCreated]
+    let _synthaxList = _synthaxList' synthaxes True
+    defaultLayout $ do
+        setTitle "Synthaxes"
+        $(widgetFile "synthaxes")
 
 postSynthaxesR :: Handler ()
 postSynthaxesR = do

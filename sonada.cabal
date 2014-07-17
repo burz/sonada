@@ -32,9 +32,10 @@ library
                      Handler.Modules
                      Handler.Module
                      Handler.Wave
-                     Handler.Synthaxes
-                     Handler.RenderSynthax
-                     Handler.Synthax
+                     Handler.Synthax.SynthaxHome
+                     Handler.Synthax.RenderSynthax
+                     Handler.Synthax.Synthaxes
+                     Handler.Synthax.Synthax
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

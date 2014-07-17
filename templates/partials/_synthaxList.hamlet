@@ -1,0 +1,15 @@
+<ul id="synthaxList">
+    $forall Entity sid synthax <- synthaxes
+        $if showLinks
+            <a href=@{SynthaxR sid}>
+                <li class="synthaxListing">
+                    $maybe name <- synthaxName synthax
+                        #{name} #
+                    <code>
+                        #{synthaxCode synthax}
+        $else
+            <li class="synthaxListing">
+                $maybe name <- synthaxName synthax
+                    #{name} #
+                <code>
+                    #{synthaxCode synthax}

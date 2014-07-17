@@ -1,4 +1,4 @@
-module Handler.RenderSynthax
+module Handler.Synthax.RenderSynthax
 ( postRenderSynthaxR
 ) where
 

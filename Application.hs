@@ -31,9 +31,10 @@ import Handler.Home
 import Handler.Modules
 import Handler.Module
 import Handler.Wave
-import Handler.RenderSynthax
-import Handler.Synthaxes
-import Handler.Synthax
+import Handler.Synthax.SynthaxHome
+import Handler.Synthax.RenderSynthax
+import Handler.Synthax.Synthaxes
+import Handler.Synthax.Synthax
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
