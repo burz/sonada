@@ -1,5 +1,8 @@
 ^{_userInfo}
 
+<center>
+    <h1>_{MsgUserName}: #{userIdent user}
+
 <div id="userLists">
     <div id="userModules">
         <h3>_{MsgModulesName}

@@ -11,10 +11,11 @@ import Yesod.Auth
 
 getUserR :: UserId -> Handler Html
 getUserR userId = do
-    euser <- requireAuth
+    euser@(Entity _ user) <- requireAuth
     modules <- runDB $ selectList [ModuleUser ==. userId] [Desc ModuleCreated]
     synthaxes <- runDB $ selectList [SynthaxUser ==. userId] [Desc SynthaxCreated]
     defaultLayout $ do
+        setTitle . toHtml $ userIdent user
         let _userInfo = _userInfo' euser
         let _moduleList = _moduleList' modules False True
         let _synthaxList = _synthaxList' synthaxes False True
