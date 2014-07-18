@@ -37,6 +37,10 @@ import Handler.Synthax.RenderSynthax
 import Handler.Synthax.Synthaxes
 import Handler.Synthax.Synthax
 
+#ifndef DEVELOPMENT
+import qualified Network.Wai.Middleware.HttpAuth as HttpAuth
+#endif
+
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
 -- comments there for more details.
@@ -62,7 +66,13 @@ makeApplication conf = do
     -- Create the WAI application and apply middlewares
     app <- toWaiAppPlain foundation
     let logFunc = messageLoggerSource foundation (appLogger foundation)
+#ifdef DEVELOPMENT
     return (logWare $ defaultMiddlewaresNoLogging app, logFunc)
+#else
+    let httpAuth = HttpAuth.basicAuth (\u p -> do
+        return $ u == "sonada" && p == "musicGen") "sonada"
+    return (logWare $ httpAuth $ defaultMiddlewaresNoLogging app, logFunc)
+#endif
 
 -- | Loads up any necessary settings, creates your foundation datatype, and
 -- performs some initialization.
