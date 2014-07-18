@@ -5,4 +5,4 @@ Music collaboration
 
 *****
 
-Author: Anthony Burzillo
+&copy; 2014 Anthony Burzillo
