@@ -8,8 +8,8 @@ import Handler.Partials
 import Import
 import Text.Julius
 
-_moduleList' :: [Entity Module] -> Bool -> Widget
-_moduleList' modules showLinks = $(widgetFile "Module/partials/_moduleList")
+_moduleList' :: [Entity Module] -> Bool -> Bool -> Widget
+_moduleList' modules showCode showLinks = $(widgetFile "Module/partials/_moduleList")
 
 _moduleInterface' :: Maybe (Entity Module) -> Widget
 _moduleInterface' mem = do

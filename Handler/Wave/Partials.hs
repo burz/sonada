@@ -10,7 +10,7 @@ import Import
 _waveChart' :: [Entity Module] -> Widget
 _waveChart' modules = do
     addScriptRemote "/static/js/Chart.min.js"
-    let _moduleList = _moduleList' modules False
+    let _moduleList = _moduleList' modules False False
     let _chart = _chart'
     $(widgetFile "Wave/partials/_waveChart")
 

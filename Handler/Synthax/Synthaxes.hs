@@ -17,7 +17,7 @@ getSynthaxesR = do
     defaultLayout $ do
         setTitle "Synthaxes"
         let _userInfo = _userInfo' euser
-        let _synthaxList = _synthaxList' synthaxes True
+        let _synthaxList = _synthaxList' synthaxes True True
         $(widgetFile "Synthax/synthaxes")
 
 postSynthaxesR :: Handler ()

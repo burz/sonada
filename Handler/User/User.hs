@@ -16,7 +16,7 @@ getUserR userId = do
     synthaxes <- runDB $ selectList [SynthaxUser ==. userId] [Desc SynthaxCreated]
     defaultLayout $ do
         let _userInfo = _userInfo' euser
-        let _moduleList = _moduleList' modules True
-        let _synthaxList = _synthaxList' synthaxes True
+        let _moduleList = _moduleList' modules False True
+        let _synthaxList = _synthaxList' synthaxes False True
         $(widgetFile "User/user")
 

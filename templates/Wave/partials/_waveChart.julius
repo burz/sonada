@@ -62,5 +62,5 @@ function loadDefaultWave() {
 loadDefaultWave();
 
 $(".moduleListing").click(function (evnt) {
-    loadWave(evnt.target.childNodes[0].data);
+    loadWave(evnt.target.children.moduleCode.firstChild.firstChild.data);
 });

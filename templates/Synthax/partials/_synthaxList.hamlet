@@ -5,11 +5,27 @@
                 <li class="synthaxListing">
                     $maybe name <- synthaxName synthax
                         #{name} #
-                    <code>
-                        #{synthaxCode synthax}
+                    $nothing
+                        _{MsgSynthaxName} #{toPathPiece sid}
+                    $if showCode
+                        <div id="synthaxCode">
+                            <code>
+                                #{synthaxCode synthax}
+                    $else
+                        <div id="synthaxCode" style="display: none;">
+                            <code>
+                                #{synthaxCode synthax}
         $else
             <li class="synthaxListing">
                 $maybe name <- synthaxName synthax
                     #{name} #
-                <code>
-                    #{synthaxCode synthax}
+                $nothing
+                    _{MsgSynthaxName} #{toPathPiece sid}
+                $if showCode
+                    <div id="synthaxCode">
+                        <code>
+                            #{synthaxCode synthax}
+                $else
+                    <div id="synthaxCode" style="display: none;">
+                        <code>
+                            #{synthaxCode synthax}

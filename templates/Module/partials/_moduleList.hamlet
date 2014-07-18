@@ -5,11 +5,27 @@
                 <li class="moduleListing">
                     $maybe name <- moduleName module
                         #{name} #
-                    <code>
-                        #{moduleCode module}
+                    $nothing
+                        _{MsgModuleName} #{toPathPiece mid}
+                    $if showCode
+                        <div id="moduleCode">
+                            <code>
+                                #{moduleCode module}
+                    $else
+                        <div id="moduleCode" style="display: none;">
+                            <code>
+                                #{moduleCode module}
         $else
             <li class="moduleListing">
                 $maybe name <- moduleName module
                     #{name} #
-                <code>
-                    #{moduleCode module}
+                $nothing
+                    Module #{toPathPiece mid}
+                $if showCode
+                    <div id="moduleCode">
+                        <code>
+                            #{moduleCode module}
+                $else
+                    <div id="moduleCode" style="display: none;">
+                        <code>
+                            #{moduleCode module}

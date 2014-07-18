@@ -26,6 +26,6 @@ _synthaxInterface' mes = do
             let saveSynthaxUrl = renderUrl $ SynthaxR sid 
             $(widgetFile "Synthax/partials/_synthaxInterface")
 
-_synthaxList' :: [Entity Synthax] -> Bool -> Widget
-_synthaxList' synthaxes showLinks = $(widgetFile "Synthax/partials/_synthaxList")
+_synthaxList' :: [Entity Synthax] -> Bool -> Bool -> Widget
+_synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_synthaxList")
 

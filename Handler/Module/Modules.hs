@@ -16,7 +16,7 @@ getModulesR = do
     modules <- runDB $ selectList [] [Desc ModuleCreated]
     defaultLayout $ do
         setTitle "Modules"
-        let _moduleList = _moduleList' modules True
+        let _moduleList = _moduleList' modules True True
         let _userInfo = _userInfo' euser
         $(widgetFile "Module/modules")
 
