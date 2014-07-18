@@ -8,8 +8,8 @@ module Handler.Partials
 import Import
 import Yesod.Auth
 
-_userInfo' :: User -> Widget
-_userInfo' user = $(widgetFile "partials/_userInfo")
+_userInfo' :: Entity User -> Widget
+_userInfo' (Entity uid user) = $(widgetFile "partials/_userInfo")
 
 data ConsoleType = ModuleConsole | SynthaxConsole
 

@@ -17,3 +17,5 @@
 /synthaxes/#SynthaxId SynthaxR GET PUT
 
 /render/synthax RenderSynthaxR POST
+
+/user/#UserId UserR GET

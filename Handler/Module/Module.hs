@@ -12,7 +12,7 @@ import Yesod.Auth
 
 getModuleR :: ModuleId -> Handler Html
 getModuleR moduleId = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     mmod <- runDB $ get moduleId
     defaultLayout $ case mmod of
         Nothing  -> do
@@ -20,7 +20,7 @@ getModuleR moduleId = do
             notFound
         Just md -> do
             let name = moduleName md
-            let _userInfo = _userInfo' user
+            let _userInfo = _userInfo' euser
             let _moduleInterface = _moduleInterface' (Just $Entity moduleId md)
             $(widgetFile "Module/module")
 

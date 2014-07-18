@@ -13,11 +13,11 @@ numberOfModulesToLoad = 10
 
 getWaveR :: Handler Html
 getWaveR = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     modules <- runDB $ selectList [] [LimitTo numberOfModulesToLoad]
     defaultLayout $ do
         setTitle "Wave"
         let _waveChart = _waveChart' modules
-        let _userInfo = _userInfo' user
+        let _userInfo = _userInfo' euser
         $(widgetFile "Wave/wave")
 

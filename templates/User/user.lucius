@@ -1,0 +1,9 @@
+#userModules {
+    float: left;
+    width: 50%;
+}
+
+#userSynthaxes {
+    float: right;
+    width: 50%;
+}

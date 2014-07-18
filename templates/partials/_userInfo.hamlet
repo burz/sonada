@@ -1,5 +1,6 @@
 <div id="userInfo">
-    #{userIdent user}
+    <a href=@{UserR uid}>
+        #{userIdent user}
 
     --
 

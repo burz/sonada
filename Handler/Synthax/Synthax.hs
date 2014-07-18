@@ -12,7 +12,7 @@ import Yesod.Auth
 
 getSynthaxR :: SynthaxId -> Handler Html
 getSynthaxR synthaxId = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     msyn <- runDB $ get synthaxId
     defaultLayout $ case msyn of
         Nothing -> do
@@ -21,7 +21,7 @@ getSynthaxR synthaxId = do
         Just s -> do
             setTitle "Synthax"
             let name = synthaxName s
-            let _userInfo = _userInfo' user
+            let _userInfo = _userInfo' euser
             let _synthaxInterface = _synthaxInterface' . Just $ Entity synthaxId s
             $(widgetFile "Synthax/synthax")
 

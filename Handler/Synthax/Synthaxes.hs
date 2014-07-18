@@ -12,11 +12,11 @@ import Yesod.Auth
 
 getSynthaxesR :: Handler Html
 getSynthaxesR = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     synthaxes <- runDB $ selectList [] [Desc SynthaxCreated]
     defaultLayout $ do
         setTitle "Synthaxes"
-        let _userInfo = _userInfo' user
+        let _userInfo = _userInfo' euser
         let _synthaxList = _synthaxList' synthaxes True
         $(widgetFile "Synthax/synthaxes")
 

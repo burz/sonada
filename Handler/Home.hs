@@ -9,7 +9,7 @@ import Yesod.Auth
 
 getHomeR :: Handler Html
 getHomeR = do
-    muser <- maybeAuth
+    meuser <- maybeAuth
     defaultLayout $ do
         setTitle "sonada"
         let _userInfo = _userInfo'

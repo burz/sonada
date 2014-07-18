@@ -1,5 +1,5 @@
-$maybe Entity _ user <- muser
-    ^{_userInfo' user}
+$maybe euser <- meuser
+    ^{_userInfo euser}
 
 <center>
     <h2>Welcome to sonada!

@@ -10,11 +10,11 @@ import Yesod.Auth
 
 getSynthaxHomeR :: Handler Html
 getSynthaxHomeR = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     defaultLayout $ do
         setTitle "Synthax"
         let name = Nothing :: Maybe Text
-        let _userInfo = _userInfo' user
+        let _userInfo = _userInfo' euser
         let _synthaxInterface = _synthaxInterface' Nothing
         $(widgetFile "Synthax/synthax")
 

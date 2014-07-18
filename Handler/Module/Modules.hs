@@ -12,12 +12,12 @@ import Yesod.Auth
 
 getModulesR :: Handler Html
 getModulesR = do
-    Entity _ user <- requireAuth
+    euser <- requireAuth
     modules <- runDB $ selectList [] [Desc ModuleCreated]
     defaultLayout $ do
         setTitle "Modules"
         let _moduleList = _moduleList' modules True
-        let _userInfo = _userInfo' user
+        let _userInfo = _userInfo' euser
         $(widgetFile "Module/modules")
 
 postModulesR :: Handler ()
