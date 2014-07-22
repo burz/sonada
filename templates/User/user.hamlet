@@ -5,11 +5,13 @@
 
 <div id="userLists">
     <div id="userModules">
-        <h3>_{MsgModulesName}
+        <center>
+            <h3>_{MsgModulesName}
 
         ^{_moduleList}
 
     <div id="userSynthaxes">
-        <h3>_{MsgSynthaxesName}
+        <center>
+            <h3>_{MsgSynthaxesName}
 
         ^{_synthaxList}

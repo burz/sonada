@@ -17,7 +17,7 @@ postRenderSynthaxR = do
     case r of
         Left e -> invalidArgs [pack $ "Error during parsing: " ++ show e]
         Right e -> do
-            let jr = jsonResponse e
+            jr <- jsonResponse e
             case jr of
                 Nothing -> invalidArgs ["Variables must be declared before they are used"]
                 Just j -> sendResponse j

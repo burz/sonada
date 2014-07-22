@@ -1,6 +1,8 @@
 module Synthax.Wrappers
 ( sourceWrapper
 , codeWrapper
+, moduleFunctionWrapper
+, moduleCodeWrapper
 , gainWrapper
 , crossfadeWrapper
 , filterWrapper
@@ -11,8 +13,8 @@ module Synthax.Wrappers
 import Synthax.Builders
 
 import Prelude hiding (max)
+import Import hiding (max)
 import Data.Array
-import Data.Monoid
 import Data.Text hiding (foldr)
 import Data.Text.Internal.Builder
 
@@ -21,11 +23,14 @@ sourceWrapper label fileHandle = sid "var " .<> label
     <>. sid " = SourceTool(__audioContext(), __bufferContext.getBuffer("
     <>. show fileHandle <>. sid "), true);\n"
 
-codeWrapper :: Builder -> Text -> Builder
-codeWrapper label code = sid "var " .<> label
+codeWrapper' :: Builder -> Maybe Text -> Text -> Builder
+codeWrapper' label mcode function = sid "var " .<> label
     <>. sid " = __audioContext().createScriptProcessor(16384, 0, 1);\n"
     <> label <>. sid ".onaudioprocess = function(audioProcessingEvent) {\n"
-    <>. code <>. sid "\n"
+    <>. tid (case mcode of
+        Nothing -> ""
+        Just code -> code)
+    <>. sid "\n"
     <>. sid "var outputBuffer = audioProcessingEvent.outputBuffer;\n"
     <>. sid "var currentTime = __audioContext().currentTime;\n"
     <>. sid "for(var channel = 0; channel < outputBuffer.numberOfChannels; channel++) {\n"
@@ -34,8 +39,22 @@ codeWrapper label code = sid "var " .<> label
     <>. sid "var sampleTime = currentTime +\n"
     <>. sid "outputBuffer.duration *\n"
     <>. sid "sample / outputBuffer.length;\n"
-    <>. sid "outData[sample] = gen(sampleTime);\n"
-    <>. sid "}\n" <>. sid "}\n" <>. sid "};\n"
+    <>. sid "outData[sample] = "
+    <>. tid function <>. sid "(sampleTime);\n"
+    <>. sid "}\n}\n};\n"
+
+codeWrapper :: Builder -> Text -> Builder
+codeWrapper label code = codeWrapper' label (Just code) "gen"
+
+moduleFunctionWrapper :: Builder -> ModuleId -> Builder
+moduleFunctionWrapper label mid = codeWrapper' label Nothing
+    $ append "__module_" $ toPathPiece mid
+
+moduleCodeWrapper :: ModuleId -> Text -> Builder
+moduleCodeWrapper mid code = tid "var __module_"
+    .<>. tid (toPathPiece mid)
+    <>. sid " = function (t) {\n"
+    <>. code <>. sid "\nreturn gen(t);\n}\n"
 
 gainWrapper :: Builder -> Builder -> Double -> Builder
 gainWrapper label source value = sid "var " .<> label

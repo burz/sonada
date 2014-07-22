@@ -7,10 +7,12 @@ module Synthax.Parser
 import Synthax.Algebra
 import Synthax.AST
 import Synthax.Lexer
+import qualified Model
 
 import Prelude hiding (filter)
 import Control.Applicative ((<$>), (<*), (*>))
 import Data.Text hiding (words, map, filter)
+import Database.Persist.Types (KeyBackend(..), PersistValue(PersistInt64))
 import Text.Parsec
 import Text.Parsec.String
 
@@ -26,12 +28,19 @@ code = reserved "Code" *> reservedOp "<<<" *> do
     js <- manyTill anyChar (try $ reservedOp ">>>")
     return . Fx . Code $ pack js
 
+toModuleId :: Integral i => i -> Model.ModuleId
+toModuleId = Key . PersistInt64 . fromIntegral
+
+moduleExpr :: ExprParser
+moduleExpr = reserved "Module" *> integer >>= return . Fx . Module . toModuleId
+
 var :: ExprParser
 var = Fx . Var . pack <$> identifier
 
 value :: ExprParser
 value = source
     <|> code
+    <|> moduleExpr
     <|> var
     <|> parens expression
 
