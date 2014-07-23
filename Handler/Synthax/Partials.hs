@@ -33,5 +33,7 @@ _synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_syn
 _builderInterface' :: Widget
 _builderInterface' = do
     addScriptRemote "/static/js/d3.min.js"
+    $(widgetFile "Synthax/tools")
+    let name = Nothing :: Maybe Text
     $(widgetFile "Synthax/partials/_builderInterface")
 

@@ -1,1 +1,14 @@
-<div id="builderContainer">
+<div id="builderInterface">
+    <div id="builderContainer">
+
+    <div id="synthaxButtons">
+        <button id="synthaxSave">_{MsgSave}
+        <button id="synthaxPlay">_{MsgPlay}
+        <button id="synthaxStop">_{MsgStop}
+
+    <div id="synthaxNameField">
+        <label for="synthaxName">Name:
+            $maybe n <- name
+                <input type=text id="synthaxName" value=#{n}>
+            $nothing
+                <input type=text id="synthaxName">

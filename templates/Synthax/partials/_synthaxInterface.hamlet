@@ -5,9 +5,9 @@
     ^{_console}
 
     <div id="synthaxButtons">
-        <button id="synthaxSave">Save
-        <button id="synthaxPlay">Play
-        <button id="synthaxStop">Stop
+        <button id="synthaxSave">_{MsgSave}
+        <button id="synthaxPlay">_{MsgPlay}
+        <button id="synthaxStop">_{MsgStop}
 
     <div id="synthaxNameField">
         <label for="synthaxName">Name:

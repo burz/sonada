@@ -5,9 +5,9 @@
     ^{_console}
 
     <div id="moduleButtons">
-        <button id="moduleSave">Save
-        <button id="modulePlay">Play
-        <button id="moduleStop">Stop
+        <button id="moduleSave">_{MsgSave}
+        <button id="modulePlay">_{MsgPlay}
+        <button id="moduleStop">_{MsgStop}
 
     <div id="moduleNameField">
         <label for"moduleName">Name:
