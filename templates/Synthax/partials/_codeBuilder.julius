@@ -1,0 +1,43 @@
+function _codeBuilder(node) {
+    if(node.type === "source") {
+        return "Source \"" + node.file + "\"";
+    }
+    else if(node.type === "code") {
+        return "Code <<<" + node.code + ">>>";
+    }
+    else if(node.type === "module") {
+        return "Module " + node.moduleId;
+    }
+    else if(node.type === "var") {
+        return "Var " + node.name;
+    }   
+    else if(node.type === "gain") {
+        return "Gain (" + _codeBuilder(node.child) +
+               ") " + node.value;
+    }
+    else if(node.type === "crossfade") {
+        return "Crossfade (" + _codeBuilder(node.rightChild) +
+               ") (" + _codeBuilder(node.leftChild) + ") " +
+               node.value + " " + node.max;
+    }
+    else if(node.type === "filter") {
+        return "Filter (" + _codeBuilder(node.child) +
+               " " + node.filter + " " + node.value;
+    }
+    else {
+        return "Let " + node.label + " = (" +
+               _codeBuilder(node.expr) + ")";
+    }
+}
+
+function codeBuilder(data) {
+    var code = data.synthax.map(_codeBuilder);
+
+    var result = code[0];
+
+    for(var i = 1; i < code.length; ++i) {
+        result += ";\n" + code[i];
+    }
+
+    return result;
+}

@@ -57,9 +57,6 @@ noLabel = state (\(i, j) -> ((), (i, j)))
 newLabel :: HandleGenerator Int
 newLabel = state (\(i, j) -> (i, (i + 1, j)))
 
-newFileHandle :: HandleGenerator Int
-newFileHandle = state (\(i, j) -> (j, (i, j + 1)))
-
 bothNew :: HandleGenerator (Int, Int)
 bothNew = state (\(i, j) -> ((i, j), (i + 1, j + 1)))
 

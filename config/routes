@@ -12,10 +12,10 @@
 
 /wave WaveR GET
 
-/synthax              SynthaxHomeR      GET
-/synthax/#SynthaxId   SynthaxR          GET PUT
-/synthaxes            SynthaxesR        GET POST
-/synthaxes/builder    SynthaxesBuilderR GET
+/synthax                      SynthaxHomeR      GET
+/synthax/#SynthaxId           SynthaxR          GET PUT
+/synthaxes                    SynthaxesR        GET POST
+/synthaxes/builder            SynthaxesBuilderR GET
 
 /render/synthax                    RenderSynthaxR        POST
 /render/synthax/builder/#SynthaxId RenderSynthaxBuilderR GET

@@ -32,8 +32,11 @@ _synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_syn
 
 _builderInterface' :: Widget
 _builderInterface' = do
+    renderUrl <- getUrlRender
     addScriptRemote "/static/js/d3.min.js"
     $(widgetFile "Synthax/tools")
     let name = Nothing :: Maybe Text
+    let saveRequestType = "POST" :: Text
+    let saveSynthaxUrl = renderUrl SynthaxesR
     $(widgetFile "Synthax/partials/_builderInterface")
 

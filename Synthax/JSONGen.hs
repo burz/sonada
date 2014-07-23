@@ -8,7 +8,7 @@ import Synthax.Algebra
 import Synthax.AST
 import Synthax.Builders
 
-import Prelude (($))
+import Prelude (($), (.))
 import Data.Aeson
 import Yesod hiding (Filter)
 
@@ -54,6 +54,5 @@ instance ToJSON (Fix Expr) where
         ]
 
 renderJSON :: [Fix Expr] -> (ContentType, Content)
-renderJSON e = let o = toJSON e in
-    (typeJson, toContent $ encode o)
+renderJSON e = (typeJson, toContent . encode $ object [ "synthax" .= e ])
 
