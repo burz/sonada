@@ -3,19 +3,13 @@
         <a href=@{HomeR}>_{MsgSiteName}
 
     <a href=@{ModuleHomeR}>_{MsgModuleName}
-
     --
-
     <a href=@{ModulesR}>_{MsgModulesName}
-
     --
-
     <a href=@{WaveR}>_{MsgWaveName}
-
     --
-
     <a href=@{SynthaxHomeR}>_{MsgSynthaxName}
-
     --
-
     <a href=@{SynthaxesR}>_{MsgSynthaxesName}
+    --
+    <a href=@{SynthaxesBuilderR}>_{MsgSynthaxBuilderName}

@@ -1,8 +1,8 @@
 ^{_userInfo}
 
 $maybe n <- name
-    <h2 id="synthaxTitle">_{MsgSynthaxName}: #{n}
+    <h2 class="pageTitle">_{MsgSynthaxName}: #{n}
 $nothing
-    <h2 id="synthaxTitle">_{MsgSynthaxName}
+    <h2 class="pageTitle">_{MsgSynthaxName}
 
 ^{_synthaxInterface}

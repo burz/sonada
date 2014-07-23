@@ -14,3 +14,9 @@ h1, h2, h3, label, li {
     color: #CCCCB2;
 }
 
+.pageTitle {
+    position: absolute;
+    top: 2%;
+    right: 5%;
+}
+

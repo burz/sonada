@@ -36,6 +36,7 @@ import Handler.Synthax.SynthaxHome
 import Handler.Synthax.RenderSynthax
 import Handler.Synthax.Synthaxes
 import Handler.Synthax.Synthax
+import Handler.Synthax.SynthaxesBuilder
 import Handler.User.User
 
 #ifndef DEVELOPMENT

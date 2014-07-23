@@ -7,6 +7,7 @@ ModuleConsoleDefault: function gen(t) { return 0.5 * Math.sin(t * 440 * Math.PI 
 WaveName: Wave
 
 SynthaxName: Synthax
+SynthaxBuilderName: Builder
 SynthaxesName: Synthaxes
 SynthaxConsoleDefault: Code <<<function gen(t) { return 0.5 * Math.sin(t * 440 * Math.PI * 2); }>>>
 

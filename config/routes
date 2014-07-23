@@ -13,8 +13,9 @@
 /wave WaveR GET
 
 /synthax              SynthaxHomeR GET
+/synthax/#SynthaxId   SynthaxR GET PUT
 /synthaxes            SynthaxesR GET POST
-/synthaxes/#SynthaxId SynthaxR GET PUT
+/synthaxes/builder    SynthaxesBuilderR GET
 
 /render/synthax RenderSynthaxR POST
 

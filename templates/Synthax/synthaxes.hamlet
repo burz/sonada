@@ -1,6 +1,5 @@
 ^{_userInfo}
 
-<center>
-    <h1>_{MsgSynthaxesName}
+<h2 class="pageTitle">_{MsgSynthaxesName}
 
 ^{_synthaxList}

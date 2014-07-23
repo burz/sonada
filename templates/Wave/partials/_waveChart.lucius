@@ -1,9 +1,17 @@
 #chart {
-    position: absolute;
-    top: 25%;
+   position: absolute;
+   top: 15%;
+   left: 10%;
+   width: 80%;
+   height: 60%;
 }
+
 #moduleList {
     position: absolute;
     left: 10%;
-    top: 95%;
+    top: 85%;
+}
+
+.moduleListing {
+    cursor: pointer;
 }

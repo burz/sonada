@@ -1,8 +1,17 @@
+#editor {
+   position: absolute;
+   top: 15%;
+   left: 10%;
+   width: 80%;
+   height: 60%;
+}
+
 #synthaxNameField {
    position: absolute;
    top: 75%;
    left: 10%;
 }
+
 #synthaxButtons {
     position: absolute;
     top: 80%;
