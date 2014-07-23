@@ -27,6 +27,7 @@ library
                      Synthax.Builders
                      Synthax.Wrappers
                      Synthax.JSGen
+                     Synthax.JSONGen
                      Handler.Partials
                      Handler.Home
                      Handler.Module.Partials
@@ -36,8 +37,9 @@ library
                      Handler.Wave.Partials
                      Handler.Wave.Wave
                      Handler.Synthax.Partials
-                     Handler.Synthax.SynthaxHome
                      Handler.Synthax.RenderSynthax
+                     Handler.Synthax.RenderSynthaxBuilder
+                     Handler.Synthax.SynthaxHome
                      Handler.Synthax.Synthaxes
                      Handler.Synthax.Synthax
                      Handler.Synthax.SynthaxesBuilder

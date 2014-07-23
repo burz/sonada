@@ -32,8 +32,9 @@ import Handler.Module.ModuleHome
 import Handler.Module.Modules
 import Handler.Module.Module
 import Handler.Wave.Wave
-import Handler.Synthax.SynthaxHome
 import Handler.Synthax.RenderSynthax
+import Handler.Synthax.RenderSynthaxBuilder
+import Handler.Synthax.SynthaxHome
 import Handler.Synthax.Synthaxes
 import Handler.Synthax.Synthax
 import Handler.Synthax.SynthaxesBuilder

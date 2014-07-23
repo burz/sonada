@@ -2,21 +2,22 @@
 /auth   AuthR   Auth   getAuth
 
 /favicon.ico FaviconR GET
-/robots.txt RobotsR GET
+/robots.txt RobotsR   GET
 
 / HomeR GET
 
 /module            ModuleHomeR GET
-/modules           ModulesR GET POST
-/modules/#ModuleId ModuleR GET PUT
+/modules           ModulesR    GET POST
+/modules/#ModuleId ModuleR     GET PUT
 
 /wave WaveR GET
 
-/synthax              SynthaxHomeR GET
-/synthax/#SynthaxId   SynthaxR GET PUT
-/synthaxes            SynthaxesR GET POST
+/synthax              SynthaxHomeR      GET
+/synthax/#SynthaxId   SynthaxR          GET PUT
+/synthaxes            SynthaxesR        GET POST
 /synthaxes/builder    SynthaxesBuilderR GET
 
-/render/synthax RenderSynthaxR POST
+/render/synthax                    RenderSynthaxR        POST
+/render/synthax/builder/#SynthaxId RenderSynthaxBuilderR GET
 
 /user/#UserId UserR GET
