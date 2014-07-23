@@ -38,6 +38,7 @@ import Handler.Synthax.SynthaxHome
 import Handler.Synthax.Synthaxes
 import Handler.Synthax.Synthax
 import Handler.Synthax.SynthaxesBuilder
+import Handler.Synthax.SynthaxBuilder
 import Handler.User.User
 
 #ifndef DEVELOPMENT

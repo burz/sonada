@@ -43,6 +43,7 @@ library
                      Handler.Synthax.Synthaxes
                      Handler.Synthax.Synthax
                      Handler.Synthax.SynthaxesBuilder
+                     Handler.Synthax.SynthaxBuilder
                      Handler.User.User
 
     if flag(dev) || flag(library-only)

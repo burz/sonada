@@ -14,6 +14,7 @@
 
 /synthax                      SynthaxHomeR      GET
 /synthax/#SynthaxId           SynthaxR          GET PUT
+/synthax/builder/#SynthaxId   SynthaxBuilderR   GET
 /synthaxes                    SynthaxesR        GET POST
 /synthaxes/builder            SynthaxesBuilderR GET
 

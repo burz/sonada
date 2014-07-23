@@ -1,5 +1,77 @@
-var builderData = JSON.parse(
-    "{\"synthax\":[{\"code\":\"function gen(t) { return 0.5 * Math.sin(t * 440 * Math.PI * 2); }\",\"type\":\"code\"}]}");
+var builderData = JSON.parse("#{rawJS json}");
+
+var ___audioContext___ = null;
+
+function __audioContext() {
+    if(___audioContext___ === null) {
+        ___audioContext___ = new AudioContext();
+    }
+
+    return ___audioContext___;
+}
+
+var ___scriptLocation___ = null;
+
+function __setScript(value) {
+    if(___scriptLocation___ === null) {
+        ___scriptLocation___ = document.createElement('script');
+    }
+    else {
+        document.body.removeChild(___scriptLocation___);
+    }
+
+    ___scriptLocation___.text = value;
+
+    document.body.appendChild(___scriptLocation___);
+}
+
+var ___topVariable___ = null;
+
+function stopSynthax() {
+    if(___topVariable___ === null)
+    {
+        return;
+    }
+
+    ___topVariable___.disconnect();
+}
+
+function stopSynthax() {
+    if(___topVariable___ === null)
+    {
+        return;
+    }
+
+    ___topVariable___.disconnect();
+}
+
+function playSynthax() {
+    stopSynthax();
+
+    var data = {
+        code: codeBuilder(builderData),
+        name: $("#synthaxName").val()
+    };
+
+    var request = $.ajax({
+        type: "POST",
+        url: "#{rawJS genCodeUrl}",
+        contentType: "application/json",
+        data: JSON.stringify(data)
+    });
+
+    request.done(function (msg) {
+        __setScript(msg.script);
+
+        ___topVariable___ = window[msg.label];
+
+        ___topVariable___.connect(__audioContext().destination);
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Sending the synthax to the server failed: " + textStatus);
+    });
+}
 
 function saveSynthax() {
     var data = {
@@ -24,6 +96,8 @@ function saveSynthax() {
 }
 
 $("#synthaxSave").click(saveSynthax);
+$("#synthaxPlay").click(playSynthax);
+$("#synthaxStop").click(stopSynthax);
 
 // Get JSON data
 var treeJSON = d3.json("/static/flare.json", function(error, treeData) {

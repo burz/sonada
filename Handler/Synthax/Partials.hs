@@ -4,9 +4,12 @@ module Handler.Synthax.Partials
 , _builderInterface'
 ) where
 
+import Synthax.Parser
+import Synthax.JSONGen
 import Handler.Partials
 
 import Import
+import Data.Text (pack)
 import Text.Julius
 
 _synthaxInterface' :: Maybe (Entity Synthax) -> Widget
@@ -30,13 +33,31 @@ _synthaxInterface' mes = do
 _synthaxList' :: [Entity Synthax] -> Bool -> Bool -> Widget
 _synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_synthaxList")
 
-_builderInterface' :: Widget
-_builderInterface' = do
+escapeRawJS :: Text -> RawJavascript
+escapeRawJS j = foldr escape (pack "") j
+    where escape c r = append r c
+
+_builderInterface' :: Maybe (Entity Synthax) -> Widget
+_builderInterface' mes = do
     renderUrl <- getUrlRender
+    messageRender <- getMessageRender
     addScriptRemote "/static/js/d3.min.js"
     $(widgetFile "Synthax/tools")
     let name = Nothing :: Maybe Text
-    let saveRequestType = "POST" :: Text
-    let saveSynthaxUrl = renderUrl SynthaxesR
-    $(widgetFile "Synthax/partials/_builderInterface")
+    let genCodeUrl = renderUrl RenderSynthaxR
+    case mes of
+        Nothing -> do
+            let json = messageRender MsgSynthaxBuilderDefault
+            let saveRequestType = "POST" :: Text
+            let saveSynthaxUrl = renderUrl SynthaxesR
+            $(widgetFile "Synthax/partials/_builderInterface")
+        Just (Entity sid s) -> do
+            let ee = parseText $ synthaxCode s
+            case ee of
+                Left e -> invalidArgs [pack $ "Error during parsing: " ++ show e]
+                Right es -> do
+                    let json = renderJSON' es
+                    let saveRequestType = "PUT" :: Text
+                    let saveSynthaxUrl = renderUrl $ SynthaxR sid
+                    $(widgetFile "Synthax/partials/_builderInterface")
 
