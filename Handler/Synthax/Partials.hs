@@ -1,6 +1,7 @@
 module Handler.Synthax.Partials
 ( _synthaxInterface'
 , _synthaxList'
+, _builderInterface'
 ) where
 
 import Handler.Partials
@@ -28,4 +29,9 @@ _synthaxInterface' mes = do
 
 _synthaxList' :: [Entity Synthax] -> Bool -> Bool -> Widget
 _synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_synthaxList")
+
+_builderInterface' :: Widget
+_builderInterface' = do
+    addScriptRemote "/static/js/d3.min.js"
+    $(widgetFile "Synthax/partials/_builderInterface")
 

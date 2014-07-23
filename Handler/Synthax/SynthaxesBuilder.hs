@@ -3,6 +3,7 @@ module Handler.Synthax.SynthaxesBuilder
 ) where
 
 import Handler.Partials
+import Handler.Synthax.Partials
 
 import Import
 import Yesod.Auth
@@ -13,5 +14,6 @@ getSynthaxesBuilderR = do
     defaultLayout $ do
         setTitle "Builder"
         let _userInfo = _userInfo' euser
+        let _builderInterface = _builderInterface'
         $(widgetFile "Synthax/builder")
 
