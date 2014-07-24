@@ -10,7 +10,7 @@
         <button id="moduleStop">_{MsgStop}
 
     <div id="moduleNameField">
-        <label for"moduleName">Name:
+        <label for"moduleName">Name: #
             $maybe n <- name
                 <input type=text id="moduleName" value=#{n}>
             $nothing
