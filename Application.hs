@@ -33,13 +33,13 @@ import Handler.Module.Modules
 import Handler.Module.Module
 import Handler.Wave.Wave
 import Handler.Synthax.RenderSynthax
-import Handler.Synthax.RenderSynthaxBuilder
 import Handler.Synthax.SynthaxHome
 import Handler.Synthax.Synthaxes
 import Handler.Synthax.Synthax
-import Handler.Synthax.SynthaxesBuilder
-import Handler.Synthax.SynthaxBuilder
 import Handler.User.User
+import Handler.Builder.RenderSynthaxBuilder
+import Handler.Builder.SynthaxesBuilder
+import Handler.Builder.SynthaxBuilder
 
 #ifndef DEVELOPMENT
 import qualified Network.Wai.Middleware.HttpAuth as HttpAuth

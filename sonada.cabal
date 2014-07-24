@@ -38,13 +38,14 @@ library
                      Handler.Wave.Wave
                      Handler.Synthax.Partials
                      Handler.Synthax.RenderSynthax
-                     Handler.Synthax.RenderSynthaxBuilder
                      Handler.Synthax.SynthaxHome
                      Handler.Synthax.Synthaxes
                      Handler.Synthax.Synthax
-                     Handler.Synthax.SynthaxesBuilder
-                     Handler.Synthax.SynthaxBuilder
                      Handler.User.User
+                     Handler.Builder.Partials
+                     Handler.Builder.RenderSynthaxBuilder
+                     Handler.Builder.SynthaxesBuilder
+                     Handler.Builder.SynthaxBuilder
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

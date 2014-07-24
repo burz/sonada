@@ -1,4 +1,4 @@
-module Handler.Synthax.RenderSynthaxBuilder
+module Handler.Builder.RenderSynthaxBuilder
 ( getRenderSynthaxBuilderR
 ) where
 

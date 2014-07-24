@@ -1,0 +1,11 @@
+#synthaxNameField {
+   position: absolute;
+   top: 90%;
+   left: 10%;
+}
+
+#synthaxButtons {
+    position: absolute;
+    top: 90%;
+    right: 10%;
+}

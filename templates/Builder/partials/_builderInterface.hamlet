@@ -1,5 +1,5 @@
 <div id="builderInterface">
-    <div id="builderContainer">
+    ^{_builderGraph}
 
     <div id="synthaxButtons">
         <button id="synthaxSave">_{MsgSave}

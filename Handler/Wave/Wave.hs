@@ -14,7 +14,10 @@ numberOfModulesToLoad = 10
 getWaveR :: Handler Html
 getWaveR = do
     euser <- requireAuth
-    modules <- runDB $ selectList [] [LimitTo numberOfModulesToLoad]
+    modules <- runDB $ selectList []
+        [ Desc ModuleCreated
+        , LimitTo numberOfModulesToLoad
+        ]
     defaultLayout $ do
         setTitle "Wave"
         let _waveChart = _waveChart' modules

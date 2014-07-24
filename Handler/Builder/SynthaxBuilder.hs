@@ -1,9 +1,9 @@
-module Handler.Synthax.SynthaxBuilder
+module Handler.Builder.SynthaxBuilder
 ( getSynthaxBuilderR
 ) where
 
 import Handler.Partials
-import Handler.Synthax.Partials
+import Handler.Builder.Partials
 
 import Import
 import Yesod.Auth
@@ -14,10 +14,10 @@ getSynthaxBuilderR sid = do
     ms <- runDB $ get sid
     defaultLayout $ do
         setTitle "Builder"
-        $(widgetFile "Synthax/partials/_codeBuilder")
+        $(widgetFile "Builder/partials/_codeBuilder")
         let _userInfo = _userInfo' euser
         case ms of
             Nothing -> notFound
             Just s -> do
                 let _builderInterface = _builderInterface' . Just $ Entity sid s
-                $(widgetFile "Synthax/builder")
+                $(widgetFile "Builder/builder")
