@@ -33,10 +33,6 @@ _synthaxInterface' mes = do
 _synthaxList' :: [Entity Synthax] -> Bool -> Bool -> Widget
 _synthaxList' synthaxes showCode showLinks = $(widgetFile "Synthax/partials/_synthaxList")
 
-escapeRawJS :: Text -> RawJavascript
-escapeRawJS j = foldr escape (pack "") j
-    where escape c r = append r c
-
 _builderInterface' :: Maybe (Entity Synthax) -> Widget
 _builderInterface' mes = do
     renderUrl <- getUrlRender
@@ -47,7 +43,7 @@ _builderInterface' mes = do
     let genCodeUrl = renderUrl RenderSynthaxR
     case mes of
         Nothing -> do
-            let json = messageRender MsgSynthaxBuilderDefault
+            let json = rawJS $ messageRender MsgSynthaxBuilderDefault
             let saveRequestType = "POST" :: Text
             let saveSynthaxUrl = renderUrl SynthaxesR
             $(widgetFile "Synthax/partials/_builderInterface")

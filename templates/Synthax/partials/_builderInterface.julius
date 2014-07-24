@@ -1,4 +1,4 @@
-var builderData = JSON.parse("#{rawJS json}");
+var builderData = #{json};
 
 var ___audioContext___ = null;
 

@@ -11,8 +11,6 @@ import Synthax.Builders
 
 import Prelude (($), (.))
 import Data.Aeson
-import Data.Aeson.Encode
-import Data.Text.Lazy.Builder
 import Yesod hiding (Filter)
 
 instance ToJSON (Fix Expr) where
@@ -56,9 +54,9 @@ instance ToJSON (Fix Expr) where
         , "expr" .= e
         ]
 
-renderJSON' :: [Fix Expr] -> Builder
-renderJSON' es = encodeToTextBuilder $ object [ "synthax" .= es ]
+renderJSON' :: [Fix Expr] -> Value
+renderJSON' es = object [ "synthax" .= es ]
 
 renderJSON :: [Fix Expr] -> (ContentType, Content)
-renderJSON es = (typeJson, toContent . encode $ object [ "synthax" .= es ])
+renderJSON es = (typeJson, toContent . encode $ renderJSON' es)
 
