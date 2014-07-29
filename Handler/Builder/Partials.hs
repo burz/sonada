@@ -9,8 +9,17 @@ import Import
 import Data.Text (pack)
 import Text.Julius
 
-_builderGraph' :: Widget
-_builderGraph' = $(widgetFile "Builder/partials/_builderGraph")
+_builderGraph' :: Maybe (Entity Synthax) -> Widget
+_builderGraph' msid = do
+    renderUrl <- getUrlRender
+    case msid of
+        Nothing -> do
+            let sid = PersistInt64 1
+            let synthaxBuilderUrl = rawJS . renderUrl $ RenderSynthaxBuilderR $ Key sid
+            $(widgetFile "Builder/partials/_builderGraph")
+        Just (Entity sid s) -> do
+            let synthaxBuilderUrl = rawJS . renderUrl $ RenderSynthaxBuilderR sid
+            $(widgetFile "Builder/partials/_builderGraph")
 
 _builderInterface' :: Maybe (Entity Synthax) -> Widget
 _builderInterface' mes = do
@@ -20,7 +29,7 @@ _builderInterface' mes = do
     $(widgetFile "Synthax/tools")
     let name = Nothing :: Maybe Text
     let genCodeUrl = renderUrl RenderSynthaxR
-    let _builderGraph = _builderGraph'
+    let _builderGraph = _builderGraph' mes
     case mes of
         Nothing -> do
             let json = rawJS $ messageRender MsgSynthaxBuilderDefault
